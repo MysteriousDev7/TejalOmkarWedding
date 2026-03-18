@@ -1,0 +1,24 @@
+/**
+ * Color Scheme: Emerald Green & Gold
+ * Luxurious and fresh
+ */
+
+:root {
+  /* Primary Colors */
+  --color-primary-maroon: #046307 !important;
+  --color-primary-gold: #D4AF37 !important;
+  --color-primary-orange: #50C878 !important;
+  --color-primary-cream: #F0FFF0 !important;
+  
+  /* Accent Colors */
+  --color-accent-red: #2E8B57 !important;
+  --color-accent-green: #3CB371 !important;
+  --color-accent-purple: #2F4F2F !important;
+  --color-accent-pink: #90EE90 !important;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #046307 0%, #2F4F2F 100%) !important;
+  --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%) !important;
+  --gradient-sunset: linear-gradient(135deg, #046307 0%, #50C878 50%, #D4AF37 100%) !important;
+  --gradient-hero: linear-gradient(135deg, #046307 0%, #2E8B57 50%, #50C878 100%) !important;
+}

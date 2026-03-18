@@ -1,0 +1,540 @@
+/**
+ * Touch Optimizations
+ * Enhanced touch interactions and gestures for mobile devices
+ */
+
+/* ===================================
+   TOUCH GESTURES
+   =================================== */
+
+/* Smooth momentum scrolling */
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent text selection on tap */
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Allow text selection for content */
+p, h1, h2, h3, h4, h5, h6, span, li {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* ===================================
+   TOUCH FEEDBACK
+   =================================== */
+
+/* Active state feedback for all interactive elements */
+button,
+a,
+.btn,
+.event-card,
+.gallery-item,
+.timeline-item {
+  position: relative;
+  -webkit-tap-highlight-color: rgba(75, 0, 130, 0.1);
+}
+
+/* Touch ripple effect */
+@keyframes touchRipple {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.touch-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.touch-ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+}
+
+.touch-ripple:active::after {
+  animation: touchRipple 0.6s ease-out;
+}
+
+/* ===================================
+   SWIPE GESTURES
+   =================================== */
+
+/* Horizontal scroll containers */
+.swipe-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.swipe-container::-webkit-scrollbar {
+  display: none;
+}
+
+.swipe-item {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+/* Swipe indicators */
+.swipe-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.swipe-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(75, 0, 130, 0.3);
+  transition: all 0.3s;
+}
+
+.swipe-dot.active {
+  background: var(--color-primary-maroon);
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* ===================================
+   PULL TO REFRESH (Optional)
+   =================================== */
+
+.pull-to-refresh {
+  position: relative;
+}
+
+.pull-indicator {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: top 0.3s;
+}
+
+.pull-indicator.active {
+  top: 10px;
+}
+
+/* ===================================
+   TOUCH-FRIENDLY BUTTONS
+   =================================== */
+
+@media (hover: none) and (pointer: coarse) {
+  
+  /* Larger touch targets */
+  .btn {
+    min-height: 48px;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+  
+  /* Navigation links */
+  .nav-menu a {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Card interactions */
+  .event-card,
+  .gallery-item {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .event-card:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .gallery-item:active {
+    transform: scale(0.95);
+  }
+  
+  /* Active states for touch */
+  button:active,
+  .btn:active {
+    transform: scale(0.95);
+    opacity: 0.9;
+  }
+  
+  a:active {
+    opacity: 0.7;
+  }
+}
+
+/* ===================================
+   LONG PRESS INTERACTIONS
+   =================================== */
+
+@keyframes longPressIndicator {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.long-press {
+  position: relative;
+}
+
+.long-press::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--color-primary-gold);
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.long-press.pressing::before {
+  animation: longPressIndicator 1s ease-out;
+}
+
+/* ===================================
+   DRAG AND DROP (Touch)
+   =================================== */
+
+.draggable {
+  touch-action: none;
+  cursor: grab;
+}
+
+.draggable.dragging {
+  cursor: grabbing;
+  opacity: 0.7;
+  transform: scale(1.05);
+  z-index: 1000;
+}
+
+/* ===================================
+   PINCH TO ZOOM (Images)
+   =================================== */
+
+.zoomable {
+  touch-action: pinch-zoom;
+  cursor: zoom-in;
+}
+
+.zoomable.zoomed {
+  cursor: zoom-out;
+  transform-origin: center;
+}
+
+/* ===================================
+   SCROLL SNAP (Gallery)
+   =================================== */
+
+@media (max-width: 767px) {
+  
+  .gallery-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .gallery-item {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .gallery-grid::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ===================================
+   TOUCH KEYBOARD ADJUSTMENTS
+   =================================== */
+
+/* Prevent layout shift when keyboard appears */
+@media (max-width: 767px) {
+  
+  body.keyboard-open {
+    position: fixed;
+    width: 100%;
+  }
+  
+  /* Adjust input fields */
+  input:focus,
+  textarea:focus {
+    position: relative;
+    z-index: 1000;
+  }
+}
+
+/* ===================================
+   HAPTIC FEEDBACK SIMULATION
+   =================================== */
+
+@media (hover: none) and (pointer: coarse) {
+  
+  /* Visual feedback for haptic-like experience */
+  .haptic-light:active {
+    animation: hapticPulse 0.1s;
+  }
+  
+  .haptic-medium:active {
+    animation: hapticPulse 0.2s;
+  }
+  
+  .haptic-heavy:active {
+    animation: hapticPulse 0.3s;
+  }
+}
+
+@keyframes hapticPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+}
+
+/* ===================================
+   TOUCH-FRIENDLY FORMS
+   =================================== */
+
+@media (max-width: 767px) {
+  
+  /* Larger form controls */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  select,
+  textarea {
+    min-height: 48px;
+    padding: 1rem;
+    font-size: 16px; /* Prevents zoom on iOS */
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    transition: border-color 0.3s;
+  }
+  
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: var(--color-primary-maroon);
+    outline: none;
+  }
+  
+  /* Checkbox and radio buttons */
+  input[type="checkbox"],
+  input[type="radio"] {
+    min-width: 24px;
+    min-height: 24px;
+    cursor: pointer;
+  }
+  
+  /* Submit buttons */
+  button[type="submit"],
+  input[type="submit"] {
+    width: 100%;
+    min-height: 56px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+}
+
+/* ===================================
+   ORIENTATION CHANGE HANDLING
+   =================================== */
+
+@media (orientation: landscape) and (max-height: 500px) {
+  
+  /* Adjust hero height in landscape */
+  .hero {
+    min-height: auto;
+    padding: 2rem 1rem;
+  }
+  
+  /* Reduce vertical spacing */
+  .section {
+    padding: 2rem 0;
+  }
+  
+  /* Adjust navigation */
+  .navbar {
+    padding: 0.5rem 0;
+  }
+}
+
+/* ===================================
+   SAFE TOUCH ZONES
+   =================================== */
+
+/* Avoid placing interactive elements in corners */
+.safe-zone {
+  padding: max(12px, env(safe-area-inset-top)) 
+           max(12px, env(safe-area-inset-right)) 
+           max(12px, env(safe-area-inset-bottom)) 
+           max(12px, env(safe-area-inset-left));
+}
+
+/* ===================================
+   PERFORMANCE OPTIMIZATIONS
+   =================================== */
+
+/* GPU acceleration for smooth animations */
+.accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Reduce repaints */
+@media (max-width: 767px) {
+  
+  * {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+  }
+}
+
+/* ===================================
+   TOUCH ACCESSIBILITY
+   =================================== */
+
+/* Focus indicators for touch navigation */
+@media (hover: none) and (pointer: coarse) {
+  
+  *:focus-visible {
+    outline: 3px solid var(--color-primary-gold);
+    outline-offset: 2px;
+  }
+  
+  /* Skip links for screen readers */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-primary-maroon);
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 10000;
+  }
+  
+  .skip-link:focus {
+    top: 0;
+  }
+}
+
+/* ===================================
+   LOADING STATES
+   =================================== */
+
+/* Touch loading indicator */
+.touch-loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.touch-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+  border: 3px solid var(--color-primary-maroon);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===================================
+   GESTURE HINTS
+   =================================== */
+
+/* Swipe hint animation */
+@keyframes swipeHint {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-20px);
+  }
+}
+
+.swipe-hint {
+  animation: swipeHint 2s ease-in-out infinite;
+}
+
+/* Tap hint */
+@keyframes tapHint {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+}
+
+.tap-hint {
+  animation: tapHint 1.5s ease-in-out infinite;
+}

@@ -1,0 +1,24 @@
+/**
+ * Color Scheme: Navy Blue & Silver
+ * Classic and timeless
+ */
+
+:root {
+  /* Primary Colors */
+  --color-primary-maroon: #000080 !important;
+  --color-primary-gold: #C0C0C0 !important;
+  --color-primary-orange: #4169E1 !important;
+  --color-primary-cream: #F0F8FF !important;
+  
+  /* Accent Colors */
+  --color-accent-red: #191970 !important;
+  --color-accent-green: #1E3A8A !important;
+  --color-accent-purple: #2C5282 !important;
+  --color-accent-pink: #6495ED !important;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #000080 0%, #2C5282 100%) !important;
+  --gradient-gold: linear-gradient(135deg, #C0C0C0 0%, #E8E8E8 100%) !important;
+  --gradient-sunset: linear-gradient(135deg, #000080 0%, #4169E1 50%, #C0C0C0 100%) !important;
+  --gradient-hero: linear-gradient(135deg, #000080 0%, #191970 50%, #4169E1 100%) !important;
+}

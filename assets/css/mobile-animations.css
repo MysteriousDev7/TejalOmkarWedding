@@ -1,0 +1,541 @@
+/**
+ * Mobile-Specific Animations
+ * Visible, performant animations designed specifically for mobile devices
+ * These WILL show on mobile and are optimized for touch screens
+ */
+
+/* ===================================
+   MOBILE ENTRANCE ANIMATIONS
+   =================================== */
+
+/* Fade in from bottom - Mobile optimized */
+@keyframes mobileSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scale in - Mobile optimized */
+@keyframes mobileScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Slide from left - Mobile */
+@keyframes mobileSlideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide from right - Mobile */
+@keyframes mobileSlideRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Bounce entrance - Mobile */
+@keyframes mobileBounce {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Rotate in - Mobile */
+@keyframes mobileRotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-10deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+}
+
+/* ===================================
+   APPLY ANIMATIONS ON MOBILE
+   =================================== */
+
+@media (max-width: 991px) {
+  
+  /* Hero section */
+  .hero {
+    animation: mobileScaleIn 0.8s ease-out;
+  }
+  
+  .couple-names {
+    animation: mobileSlideUp 1s ease-out 0.3s both;
+  }
+  
+  .wedding-date {
+    animation: mobileSlideUp 1s ease-out 0.5s both;
+  }
+  
+  .countdown {
+    animation: mobileSlideUp 1s ease-out 0.7s both;
+  }
+  
+  /* Section titles */
+  .section-title,
+  h2 {
+    animation: mobileSlideUp 0.8s ease-out both;
+  }
+  
+  /* Timeline items */
+  .timeline-item:nth-child(odd) {
+    animation: mobileSlideLeft 0.8s ease-out both;
+  }
+  
+  .timeline-item:nth-child(even) {
+    animation: mobileSlideRight 0.8s ease-out both;
+  }
+  
+  /* Event cards */
+  .event-card {
+    animation: mobileScaleIn 0.6s ease-out both;
+  }
+  
+  .event-card:nth-child(1) { animation-delay: 0.1s; }
+  .event-card:nth-child(2) { animation-delay: 0.2s; }
+  .event-card:nth-child(3) { animation-delay: 0.3s; }
+  .event-card:nth-child(4) { animation-delay: 0.4s; }
+  
+  /* Gallery items */
+  .gallery-item {
+    animation: mobileScaleIn 0.6s ease-out both;
+  }
+  
+  .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+  .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+  .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+  .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+  .gallery-item:nth-child(5) { animation-delay: 0.5s; }
+  .gallery-item:nth-child(6) { animation-delay: 0.6s; }
+  
+  /* Buttons */
+  .btn {
+    animation: mobileBounce 0.8s ease-out both;
+  }
+  
+  /* Navigation */
+  .navbar {
+    animation: mobileSlideUp 0.6s ease-out;
+  }
+  
+  /* Footer */
+  .footer {
+    animation: mobileSlideUp 0.8s ease-out both;
+  }
+}
+
+/* ===================================
+   MOBILE SCROLL ANIMATIONS
+   =================================== */
+
+@media (max-width: 991px) {
+  
+  /* Elements fade in when scrolled into view */
+  .mobile-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  
+  .mobile-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Scale in on scroll */
+  .mobile-scale-in {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  
+  .mobile-scale-in.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ===================================
+   MOBILE HOVER/TAP EFFECTS
+   =================================== */
+
+@media (max-width: 991px) {
+  
+  /* Button tap effect */
+  .btn:active {
+    animation: mobileTap 0.3s ease-out;
+  }
+  
+  @keyframes mobileTap {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.95);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  /* Card tap effect */
+  .event-card:active,
+  .gallery-item:active {
+    animation: mobileCardTap 0.3s ease-out;
+  }
+  
+  @keyframes mobileCardTap {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.97);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}
+
+/* ===================================
+   MOBILE LOADING ANIMATIONS
+   =================================== */
+
+@media (max-width: 991px) {
+  
+  /* Shimmer effect for loading */
+  @keyframes mobileShimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+  
+  .mobile-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 1000px 100%;
+    animation: mobileShimmer 2s infinite;
+  }
+  
+  /* Pulse effect */
+  @keyframes mobilePulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+  
+  .mobile-pulse {
+    animation: mobilePulse 2s ease-in-out infinite;
+  }
+}
+
+/* ===================================
+   MOBILE TEXT ANIMATIONS
+   =================================== */
+
+@media (max-width: 991px) {
+  
+  /* Typing effect for headings */
+  @keyframes mobileTyping {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  /* Gradient text animation */
+  @keyframes mobileGradientText {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .mobile-gradient-text {
+    background: linear-gradient(
+      90deg,
+      var(--color-primary-maroon),
+      var(--color-primary-gold),
+      var(--color-primary-maroon)
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: mobileGradientText 3s ease infinite;
+  }
+}
+
+/* ===================================
+   MOBILE COUNTDOWN ANIMATIONS
+   =================================== */
+
+@media (max-width: 991px) {
+  
+  .countdown-item {
+    animation: mobileCountdownPop 0.6s ease-out both;
+  }
+  
+  @keyframes mobileCountdownPop {
+    0% {
+      opacity: 0;
+      transform: scale(0.5) rotate(-5deg);
+    }
+    70% {
+      transform: scale(1.1) rotate(2deg);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) rotate(0);
+    }
+  }
+  
+  .countdown-item:nth-child(1) { animation-delay: 0.1s; }
+  .countdown-item:nth-child(2) { animation-delay: 0.2s; }
+  .countdown-item:nth-child(3) { animation-delay: 0.3s; }
+  .countdown-item:nth-child(4) { animation-delay: 0.4s; }
+  
+  /* Number flip animation */
+  .countdown-value {
+    animation: mobileNumberFlip 0.5s ease-out;
+  }
+  
+  @keyframes mobileNumberFlip {
+    0% {
+      transform: rotateX(0deg);
+    }
+    50% {
+      transform: rotateX(90deg);
+    }
+    100% {
+      transform: rotateX(0deg);
+    }
+  }
+}
+
+/* ===================================
+   MOBILE DECORATIVE ANIMATIONS
+   =================================== */
+
+@media (max-width: 991px) {
+  
+  /* Floating hearts */
+  @keyframes mobileFloatHeart {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100px) scale(0.5);
+      opacity: 0;
+    }
+  }
+  
+  .mobile-heart {
+    animation: mobileFloatHeart 3s ease-in-out infinite;
+  }
+  
+  /* Sparkle effect */
+  @keyframes mobileSparkle {
+    0%, 100% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  .mobile-sparkle {
+    animation: mobileSparkle 1.5s ease-in-out infinite;
+  }
+}
+
+/* ===================================
+   MOBILE NAVIGATION ANIMATIONS
+   =================================== */
+
+@media (max-width: 991px) {
+  
+  .nav-menu {
+    animation: mobileNavSlide 0.5s ease-out;
+  }
+  
+  @keyframes mobileNavSlide {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .nav-menu li {
+    animation: mobileNavItem 0.5s ease-out both;
+  }
+  
+  @keyframes mobileNavItem {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .nav-menu li:nth-child(1) { animation-delay: 0.1s; }
+  .nav-menu li:nth-child(2) { animation-delay: 0.15s; }
+  .nav-menu li:nth-child(3) { animation-delay: 0.2s; }
+  .nav-menu li:nth-child(4) { animation-delay: 0.25s; }
+  .nav-menu li:nth-child(5) { animation-delay: 0.3s; }
+  .nav-menu li:nth-child(6) { animation-delay: 0.35s; }
+}
+
+/* ===================================
+   MOBILE IMAGE ANIMATIONS
+   =================================== */
+
+@media (max-width: 991px) {
+  
+  /* Image reveal */
+  @keyframes mobileImageReveal {
+    from {
+      opacity: 0;
+      transform: scale(1.1);
+      filter: blur(10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0);
+    }
+  }
+  
+  .timeline-image,
+  .gallery-item img {
+    animation: mobileImageReveal 0.8s ease-out both;
+  }
+}
+
+/* ===================================
+   MOBILE PERFORMANCE OPTIMIZATION
+   =================================== */
+
+@media (max-width: 991px) {
+  
+  /* Use GPU acceleration */
+  .hero,
+  .section-title,
+  .event-card,
+  .gallery-item,
+  .timeline-item,
+  .btn {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.35s !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.2s !important;
+    }
+  }
+}
+
+/* ===================================
+   MOBILE STAGGER ANIMATIONS
+   =================================== */
+
+@media (max-width: 991px) {
+  
+  /* Stagger children */
+  .mobile-stagger > * {
+    animation: mobileSlideUp 0.6s ease-out both;
+  }
+  
+  .mobile-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+  .mobile-stagger > *:nth-child(2) { animation-delay: 0.2s; }
+  .mobile-stagger > *:nth-child(3) { animation-delay: 0.3s; }
+  .mobile-stagger > *:nth-child(4) { animation-delay: 0.4s; }
+  .mobile-stagger > *:nth-child(5) { animation-delay: 0.5s; }
+  .mobile-stagger > *:nth-child(6) { animation-delay: 0.6s; }
+  .mobile-stagger > *:nth-child(7) { animation-delay: 0.7s; }
+  .mobile-stagger > *:nth-child(8) { animation-delay: 0.8s; }
+}
+
+/* ===================================
+   ENSURE ANIMATIONS ARE VISIBLE
+   =================================== */
+
+@media (max-width: 991px) {
+  
+  /* Override any animation disabling */
+  body * {
+    animation-play-state: running !important;
+  }
+  
+  /* Ensure transitions work */
+  * {
+    transition-property: transform, opacity, background, color, border !important;
+  }
+}

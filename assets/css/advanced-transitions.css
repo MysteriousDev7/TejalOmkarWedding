@@ -1,0 +1,556 @@
+/**
+ * Advanced Transitions & Fancy Effects
+ * Additional stunning animations and transitions
+ */
+
+/* ===================================
+   3D CARD FLIP EFFECTS
+   =================================== */
+.event-card,
+.dress-guide-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform var(--duration-medium) var(--ease-out);
+}
+
+.event-card:hover,
+.dress-guide-card:hover {
+  transform: rotateY(5deg) rotateX(5deg) translateY(-10px);
+  box-shadow: 
+    var(--shadow-xl),
+    0 0 40px rgba(212, 175, 55, 0.3);
+}
+
+/* ===================================
+   GRADIENT BACKGROUND ANIMATIONS
+   =================================== */
+.hero {
+  background: linear-gradient(
+    135deg,
+    #800020 0%,
+    #DC143C 25%,
+    #FF6B35 50%,
+    #DC143C 75%,
+    #800020 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===================================
+   GLOWING TEXT EFFECTS
+   =================================== */
+.section-title {
+  position: relative;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+  transition: text-shadow var(--duration-normal);
+}
+
+.section-title:hover {
+  text-shadow: 
+    0 0 20px rgba(212, 175, 55, 0.6),
+    0 0 30px rgba(212, 175, 55, 0.4),
+    0 0 40px rgba(212, 175, 55, 0.2);
+}
+
+/* ===================================
+   SHIMMER EFFECT ON IMAGES
+   =================================== */
+.timeline-image::after,
+.gallery-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.7s;
+}
+
+.timeline-image:hover::after,
+.gallery-item:hover::after {
+  left: 100%;
+}
+
+/* ===================================
+   RIPPLE EFFECT ON BUTTONS
+   =================================== */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* ===================================
+   FLOATING HEARTS ANIMATION
+   =================================== */
+.hero::after {
+  content: '❤️';
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0;
+  animation: floatingHearts 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes floatingHearts {
+  0% {
+    bottom: -50px;
+    left: 10%;
+    opacity: 0;
+    transform: translateX(0) rotate(0deg);
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    bottom: 100%;
+    left: 20%;
+    opacity: 0;
+    transform: translateX(100px) rotate(360deg);
+  }
+}
+
+/* ===================================
+   PARALLAX SCROLLING EFFECT
+   =================================== */
+.timeline-section,
+.events-section,
+.gallery-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-section::before,
+.events-section::before,
+.gallery-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 20% 50%,
+    rgba(212, 175, 55, 0.05) 0%,
+    transparent 50%
+  );
+  animation: parallaxMove 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes parallaxMove {
+  0%, 100% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(50px) translateY(30px);
+  }
+}
+
+/* ===================================
+   STAGGER ANIMATION FOR LISTS
+   =================================== */
+.timeline-item:nth-child(1) { animation-delay: 0.1s; }
+.timeline-item:nth-child(2) { animation-delay: 0.2s; }
+.timeline-item:nth-child(3) { animation-delay: 0.3s; }
+.timeline-item:nth-child(4) { animation-delay: 0.4s; }
+.timeline-item:nth-child(5) { animation-delay: 0.5s; }
+.timeline-item:nth-child(6) { animation-delay: 0.6s; }
+
+.event-card:nth-child(1) { animation-delay: 0.1s; }
+.event-card:nth-child(2) { animation-delay: 0.2s; }
+.event-card:nth-child(3) { animation-delay: 0.3s; }
+.event-card:nth-child(4) { animation-delay: 0.4s; }
+.event-card:nth-child(5) { animation-delay: 0.5s; }
+
+.gallery-item:nth-child(1) { animation-delay: 0.1s; }
+.gallery-item:nth-child(2) { animation-delay: 0.15s; }
+.gallery-item:nth-child(3) { animation-delay: 0.2s; }
+.gallery-item:nth-child(4) { animation-delay: 0.25s; }
+.gallery-item:nth-child(5) { animation-delay: 0.3s; }
+.gallery-item:nth-child(6) { animation-delay: 0.35s; }
+
+/* ===================================
+   MORPHING SHAPES
+   =================================== */
+.decorative-line {
+  position: relative;
+}
+
+.decorative-line::before,
+.decorative-line::after {
+  animation: morphPulse 3s ease-in-out infinite;
+}
+
+@keyframes morphPulse {
+  0%, 100% {
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    transform: translateY(-50%) scale(1.5);
+  }
+}
+
+/* ===================================
+   TEXT REVEAL ANIMATION
+   =================================== */
+.intro-text,
+.section-subtitle {
+  background: linear-gradient(
+    90deg,
+    var(--color-gray) 0%,
+    var(--color-primary-maroon) 50%,
+    var(--color-gray) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShine 3s linear infinite;
+}
+
+@keyframes textShine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* ===================================
+   ZOOM & ROTATE ON SCROLL
+   =================================== */
+.timeline-marker {
+  animation: markerPulse 2s ease-in-out infinite,
+             markerRotate 4s linear infinite;
+}
+
+@keyframes markerRotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* ===================================
+   GLITCH EFFECT (Subtle)
+   =================================== */
+.bride-groom-names {
+  position: relative;
+}
+
+.bride-name::before,
+.groom-name::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.bride-name:hover::before,
+.groom-name:hover::before {
+  animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes glitch {
+  0% {
+    opacity: 0;
+    transform: translate(0);
+  }
+  20% {
+    opacity: 0.8;
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    opacity: 0.8;
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    opacity: 0.8;
+    transform: translate(2px, 2px);
+  }
+  80% {
+    opacity: 0.8;
+    transform: translate(2px, -2px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0);
+  }
+}
+
+/* ===================================
+   NEON GLOW EFFECT
+   =================================== */
+.hashtag {
+  animation: neonGlow 2s ease-in-out infinite;
+}
+
+@keyframes neonGlow {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px var(--color-primary-gold),
+      0 0 20px var(--color-primary-gold),
+      0 0 30px var(--color-primary-gold);
+  }
+  50% {
+    text-shadow: 
+      0 0 20px var(--color-primary-gold),
+      0 0 30px var(--color-primary-gold),
+      0 0 40px var(--color-primary-gold),
+      0 0 50px var(--color-primary-gold);
+  }
+}
+
+/* ===================================
+   LIQUID FILL EFFECT
+   =================================== */
+.countdown-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.countdown-item::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(
+    180deg,
+    rgba(212, 175, 55, 0.2),
+    rgba(212, 175, 55, 0.1)
+  );
+  transition: height 0.6s var(--ease-out);
+}
+
+.countdown-item:hover::before {
+  height: 100%;
+}
+
+/* ===================================
+   TYPEWRITER EFFECT
+   =================================== */
+.tagline {
+  overflow: hidden;
+  border-right: 2px solid var(--color-white);
+  white-space: nowrap;
+  animation: 
+    typing 3.5s steps(40, end) 1.2s,
+    blink-caret 0.75s step-end infinite;
+  animation-fill-mode: forwards;
+  width: 0;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--color-white); }
+}
+
+/* ===================================
+   PARTICLE EFFECT
+   =================================== */
+.venue-map {
+  position: relative;
+}
+
+.venue-map::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle, var(--color-primary-gold) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0;
+  transition: opacity var(--duration-slow);
+  pointer-events: none;
+}
+
+.venue-map:hover::before {
+  opacity: 0.1;
+  animation: particleMove 10s linear infinite;
+}
+
+@keyframes particleMove {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 50px 50px;
+  }
+}
+
+/* ===================================
+   WAVE ANIMATION FOR FOOTER
+   =================================== */
+.footer {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 175, 55, 0.05),
+    transparent
+  );
+  animation: waveSlide 8s linear infinite;
+}
+
+@keyframes waveSlide {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+/* ===================================
+   MAGNETIC HOVER EFFECT
+   =================================== */
+.nav-menu a {
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.nav-menu a:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* ===================================
+   BORDER ANIMATION
+   =================================== */
+.venue-address {
+  position: relative;
+  background: 
+    linear-gradient(90deg, var(--color-primary-gold) 50%, transparent 50%),
+    linear-gradient(90deg, var(--color-primary-gold) 50%, transparent 50%),
+    linear-gradient(0deg, var(--color-primary-gold) 50%, transparent 50%),
+    linear-gradient(0deg, var(--color-primary-gold) 50%, transparent 50%);
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  background-size: 15px 4px, 15px 4px, 4px 15px, 4px 15px;
+  background-position: 0 0, 200px 100%, 0 200px, 100% 0;
+  animation: borderDance 2s linear infinite;
+}
+
+@keyframes borderDance {
+  to {
+    background-position: 200px 0, 0 100%, 0 0, 100% 200px;
+  }
+}
+
+/* ===================================
+   SCALE PULSE ON SCROLL
+   =================================== */
+.event-icon {
+  animation: bounce 2s infinite, scalePulse 3s ease-in-out infinite;
+}
+
+@keyframes scalePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* ===================================
+   COLOR SHIFT ANIMATION
+   =================================== */
+.footer-hearts span {
+  animation: heartbeat 1.5s ease-in-out infinite,
+             colorShift 4s ease-in-out infinite;
+}
+
+@keyframes colorShift {
+  0%, 100% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(30deg);
+  }
+}
+
+/* ===================================
+   RESPONSIVE ADJUSTMENTS
+   =================================== */
+@media (max-width: 768px) {
+  /* Reduce animation intensity on mobile */
+  .event-card:hover,
+  .dress-guide-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .tagline {
+    animation: none;
+    width: 100%;
+    border-right: none;
+  }
+}
+
+/* ===================================
+   PERFORMANCE OPTIMIZATION
+   =================================== */
+@media (prefers-reduced-motion: reduce) {
+  /* Disable fancy animations for users who prefer reduced motion */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.35s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.2s !important;
+  }
+}

@@ -1,0 +1,558 @@
+/**
+ * Vintage Romantic Theme
+ * Classic ornate design with decorative borders and traditional elegance
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --vintage-purple: #4B0082;
+  --vintage-gold: #D4AF37;
+  --vintage-cream: #FFF8E7;
+  --vintage-brown: #5D4E37;
+  --vintage-white: #FAFAFA;
+}
+
+body {
+  font-family: 'Crimson Text', serif;
+  color: var(--vintage-brown);
+  background: var(--vintage-cream);
+  line-height: 1.8;
+}
+
+.vintage-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Ornate Header */
+.vintage-header {
+  background: var(--vintage-white);
+  padding: 2rem 0 1rem;
+  border-bottom: 3px double var(--vintage-gold);
+  position: relative;
+}
+
+.ornament-top {
+  width: 100px;
+  height: 30px;
+  margin: 0 auto 1rem;
+  background: radial-gradient(circle, var(--vintage-gold) 2px, transparent 2px);
+  background-size: 10px 10px;
+}
+
+.vintage-nav {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.vintage-nav a {
+  font-family: 'Cinzel', serif;
+  text-decoration: none;
+  color: var(--vintage-brown);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.vintage-nav a::after {
+  content: '❦';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.8rem;
+  color: var(--vintage-gold);
+}
+
+.vintage-nav a:hover::after {
+  opacity: 1;
+}
+
+/* Vintage Hero */
+.vintage-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background: 
+    linear-gradient(45deg, transparent 48%, var(--vintage-gold) 48%, var(--vintage-gold) 52%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, var(--vintage-gold) 48%, var(--vintage-gold) 52%, transparent 52%);
+  background-size: 20px 20px;
+  background-color: var(--vintage-cream);
+  opacity: 0.05;
+  position: relative;
+}
+
+.vintage-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--vintage-cream);
+  opacity: 0.95;
+}
+
+.decorative-frame {
+  position: relative;
+  max-width: 900px;
+  padding: 4rem;
+  background: var(--vintage-white);
+  border: 2px solid var(--vintage-gold);
+  box-shadow: 
+    inset 0 0 0 8px var(--vintage-white),
+    inset 0 0 0 10px var(--vintage-gold),
+    0 20px 60px rgba(0,0,0,0.1);
+}
+
+.frame-corner {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--vintage-gold);
+}
+
+.frame-corner.tl {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.frame-corner.tr {
+  top: -2px;
+  right: -2px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.frame-corner.bl {
+  bottom: -2px;
+  left: -2px;
+  border-right: none;
+  border-top: none;
+}
+
+.frame-corner.br {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+}
+
+.hero-content-vintage {
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.ornamental-divider {
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--vintage-gold), transparent);
+  margin: 2rem 0;
+  position: relative;
+}
+
+.ornamental-divider::before {
+  content: '❦';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--vintage-white);
+  padding: 0 1rem;
+  color: var(--vintage-gold);
+  font-size: 1.2rem;
+}
+
+.vintage-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--vintage-purple);
+  margin-bottom: 2rem;
+}
+
+.vintage-names {
+  font-family: 'Dancing Script', cursive;
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--vintage-purple);
+  margin: 2rem 0;
+}
+
+.vintage-name {
+  display: block;
+}
+
+.vintage-and {
+  font-size: 2.5rem;
+  opacity: 0.6;
+  margin: 1rem 0;
+}
+
+.vintage-invite {
+  font-size: 1.1rem;
+  font-style: italic;
+  margin: 2rem 0;
+  color: var(--vintage-brown);
+}
+
+.vintage-date-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.date-ornament-left,
+.date-ornament-right {
+  width: 60px;
+  height: 2px;
+  background: var(--vintage-gold);
+  position: relative;
+}
+
+.date-ornament-left::before,
+.date-ornament-right::after {
+  content: '◆';
+  position: absolute;
+  color: var(--vintage-gold);
+  font-size: 0.8rem;
+}
+
+.date-ornament-left::before {
+  left: 0;
+}
+
+.date-ornament-right::after {
+  right: 0;
+}
+
+.date-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.date-day {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  color: var(--vintage-purple);
+}
+
+.date-year {
+  font-size: 0.95rem;
+  letter-spacing: 3px;
+  opacity: 0.7;
+}
+
+/* Vintage Story */
+.vintage-story {
+  padding: 6rem 0;
+  background: var(--vintage-white);
+}
+
+.section-header-vintage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.header-ornament {
+  width: 80px;
+  height: 2px;
+  background: var(--vintage-gold);
+  position: relative;
+}
+
+.header-ornament::before,
+.header-ornament::after {
+  content: '✦';
+  position: absolute;
+  color: var(--vintage-gold);
+  font-size: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.header-ornament::before {
+  left: 0;
+}
+
+.header-ornament::after {
+  right: 0;
+}
+
+.vintage-heading {
+  font-family: 'Cinzel', serif;
+  font-size: 3rem;
+  color: var(--vintage-purple);
+  letter-spacing: 2px;
+}
+
+.story-timeline-vintage {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.story-chapter {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: var(--vintage-cream);
+  border: 1px solid var(--vintage-gold);
+  border-left: 4px solid var(--vintage-gold);
+  transition: all 0.3s;
+}
+
+.story-chapter:hover {
+  transform: translateX(10px);
+  box-shadow: -10px 10px 30px rgba(0,0,0,0.1);
+}
+
+.chapter-icon {
+  font-size: 2.5rem;
+  color: var(--vintage-gold);
+  flex-shrink: 0;
+}
+
+.chapter-content h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  color: var(--vintage-purple);
+  margin-bottom: 1rem;
+}
+
+.chapter-content p {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  text-align: justify;
+}
+
+/* Vintage Events */
+.vintage-events {
+  padding: 6rem 0;
+  background: var(--vintage-cream);
+}
+
+.events-vintage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.vintage-event-card {
+  background: var(--vintage-white);
+  padding: 0.5rem;
+  transition: transform 0.3s;
+}
+
+.vintage-event-card:hover {
+  transform: translateY(-5px);
+}
+
+.vintage-event-card.featured-vintage {
+  background: var(--vintage-purple);
+  color: var(--vintage-white);
+}
+
+.card-border-ornate {
+  border: 2px solid var(--vintage-gold);
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.card-border-ornate::before,
+.card-border-ornate::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--vintage-gold);
+}
+
+.card-border-ornate::before {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.card-border-ornate::after {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+}
+
+.event-icon-vintage {
+  font-size: 2.5rem;
+  color: var(--vintage-gold);
+  margin-bottom: 1rem;
+}
+
+.vintage-event-card h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--vintage-purple);
+}
+
+.vintage-event-card.featured-vintage h3 {
+  color: var(--vintage-gold);
+}
+
+.event-date-vintage {
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+}
+
+.event-time-vintage {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 1rem;
+}
+
+.event-desc-vintage {
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* Vintage Gallery */
+.vintage-gallery {
+  padding: 6rem 0;
+  background: var(--vintage-white);
+}
+
+.gallery-vintage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.vintage-photo-frame {
+  padding: 1.5rem;
+  background: var(--vintage-white);
+  border: 3px double var(--vintage-gold);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.vintage-photo-frame:hover {
+  transform: scale(1.05);
+}
+
+.photo-inner {
+  aspect-ratio: 4/3;
+  background: var(--vintage-cream);
+  border: 1px solid var(--vintage-gold);
+  position: relative;
+}
+
+.photo-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--vintage-purple) 0%, transparent 100%);
+  opacity: 0.1;
+}
+
+/* Vintage Footer */
+.vintage-footer {
+  padding: 4rem 0 3rem;
+  background: var(--vintage-purple);
+  color: var(--vintage-white);
+  text-align: center;
+  position: relative;
+}
+
+.footer-ornament-top {
+  width: 150px;
+  height: 3px;
+  background: var(--vintage-gold);
+  margin: 0 auto 2rem;
+  position: relative;
+}
+
+.footer-ornament-top::before,
+.footer-ornament-top::after {
+  content: '◆';
+  position: absolute;
+  color: var(--vintage-gold);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.footer-ornament-top::before {
+  left: -15px;
+}
+
+.footer-ornament-top::after {
+  right: -15px;
+}
+
+.vintage-hashtag {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
+  color: var(--vintage-gold);
+  margin-bottom: 1rem;
+}
+
+.footer-text-vintage {
+  font-style: italic;
+  font-size: 1.05rem;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+.footer-flourish {
+  font-size: 2rem;
+  color: var(--vintage-gold);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .vintage-names {
+    font-size: 2.5rem;
+  }
+  
+  .vintage-heading {
+    font-size: 2rem;
+  }
+  
+  .decorative-frame {
+    padding: 2rem;
+  }
+  
+  .events-vintage-grid,
+  .gallery-vintage-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .story-chapter {
+    flex-direction: column;
+    text-align: center;
+  }
+}

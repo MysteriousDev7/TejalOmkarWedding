@@ -1,0 +1,373 @@
+/**
+ * Modern Minimalist Theme
+ * Clean, card-based layout with lots of white space
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #4B0082;
+  --gold: #FFD700;
+  --white: #FFFFFF;
+  --black: #000000;
+  --gray: #F5F5F5;
+  --text: #333333;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.container-minimal {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Minimal Navigation */
+.minimal-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.nav-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Split Hero */
+.split-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  margin-top: 70px;
+}
+
+.hero-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  background: var(--white);
+}
+
+.hero-content {
+  max-width: 500px;
+}
+
+.hero-label {
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.hero-names {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem;
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+}
+
+.hero-names .name {
+  display: block;
+}
+
+.hero-names .divider {
+  font-size: 3rem;
+  opacity: 0.3;
+  margin: 0.5rem 0;
+}
+
+.hero-date {
+  font-size: 1.5rem;
+  letter-spacing: 5px;
+  margin-bottom: 3rem;
+  font-weight: 300;
+}
+
+.countdown-minimal {
+  display: flex;
+  gap: 2rem;
+}
+
+.count-item {
+  text-align: center;
+}
+
+.count-num {
+  display: block;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.count-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 0.5rem;
+  color: var(--text);
+  opacity: 0.6;
+}
+
+.hero-right {
+  background: var(--gray);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary) 0%, #9370DB 100%);
+  opacity: 0.1;
+}
+
+/* Story Cards */
+.story-cards {
+  padding: 8rem 0;
+  background: var(--white);
+}
+
+.section-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  text-align: center;
+  margin-bottom: 4rem;
+  font-weight: 300;
+  color: var(--primary);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.story-card {
+  background: var(--white);
+  padding: 3rem 2rem;
+  border: 1px solid rgba(0,0,0,0.08);
+  transition: all 0.3s;
+  position: relative;
+}
+
+.story-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  border-color: var(--primary);
+}
+
+.card-number {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--primary);
+  opacity: 0.1;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  line-height: 1;
+}
+
+.story-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.story-card p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text);
+  opacity: 0.8;
+}
+
+/* Minimal Events */
+.events-minimal {
+  padding: 8rem 0;
+  background: var(--gray);
+}
+
+.events-list {
+  max-width: 800px;
+  margin: 4rem auto 0;
+}
+
+.event-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 3rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  transition: all 0.3s;
+}
+
+.event-item:hover {
+  padding-left: 1rem;
+}
+
+.event-item.highlight {
+  background: var(--primary);
+  color: var(--white);
+  padding: 2rem;
+  margin: 2rem 0;
+  border: none;
+}
+
+.event-date {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--primary);
+}
+
+.event-item.highlight .event-date {
+  color: var(--gold);
+}
+
+.event-details h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.event-details p {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  letter-spacing: 1px;
+}
+
+/* Minimal Gallery */
+.gallery-minimal {
+  padding: 8rem 0;
+  background: var(--white);
+}
+
+.gallery-grid-minimal {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.gallery-box {
+  aspect-ratio: 4/3;
+  background: var(--gray);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.gallery-box:hover {
+  transform: scale(1.02);
+}
+
+.gallery-box::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--primary) 0%, transparent 100%);
+  opacity: 0.1;
+}
+
+/* Footer */
+.footer-minimal {
+  padding: 6rem 0 4rem;
+  background: var(--primary);
+  color: var(--white);
+  text-align: center;
+}
+
+.hashtag-minimal {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--gold);
+}
+
+.footer-text {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .split-hero {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-right {
+    min-height: 400px;
+  }
+  
+  .hero-names {
+    font-size: 3.5rem;
+  }
+  
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .event-item {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .gallery-grid-minimal {
+    grid-template-columns: 1fr;
+  }
+}

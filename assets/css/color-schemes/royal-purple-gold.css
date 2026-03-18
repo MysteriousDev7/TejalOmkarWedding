@@ -1,0 +1,24 @@
+/**
+ * Color Scheme: Royal Purple & Gold
+ * Regal and sophisticated
+ */
+
+:root {
+  /* Primary Colors */
+  --color-primary-maroon: #4B0082 !important;
+  --color-primary-gold: #FFD700 !important;
+  --color-primary-orange: #9370DB !important;
+  --color-primary-cream: #F8F4FF !important;
+  
+  /* Accent Colors */
+  --color-accent-red: #8B008B !important;
+  --color-accent-green: #6A0DAD !important;
+  --color-accent-purple: #663399 !important;
+  --color-accent-pink: #DA70D6 !important;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #4B0082 0%, #663399 100%) !important;
+  --gradient-gold: linear-gradient(135deg, #FFD700 0%, #FFA500 100%) !important;
+  --gradient-sunset: linear-gradient(135deg, #4B0082 0%, #9370DB 50%, #FFD700 100%) !important;
+  --gradient-hero: linear-gradient(135deg, #4B0082 0%, #663399 50%, #9370DB 100%) !important;
+}

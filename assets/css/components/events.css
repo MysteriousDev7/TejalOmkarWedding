@@ -1,0 +1,132 @@
+/**
+ * Events Section Component
+ * Event cards with hover effects
+ */
+
+.events-section {
+  padding: var(--spacing-xl) 0;
+  background: var(--color-white);
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-8);
+  margin-top: var(--spacing-12);
+}
+
+.event-card {
+  background: var(--color-white);
+  border-radius: var(--border-radius-2xl);
+  padding: var(--spacing-8);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-medium);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.event-card.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.event-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: var(--gradient-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-medium);
+}
+
+.event-card:hover::before {
+  transform: scaleX(1);
+}
+
+.event-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-xl);
+}
+
+.event-card.highlight {
+  background: var(--gradient-primary);
+  color: var(--color-white);
+}
+
+.event-card.highlight .event-name,
+.event-card.highlight .event-date,
+.event-card.highlight .event-time {
+  color: var(--color-white);
+}
+
+.event-card.highlight .event-description {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.event-icon {
+  font-size: var(--font-size-5xl);
+  text-align: center;
+  margin-bottom: var(--spacing-4);
+  animation: bounce 2s infinite;
+}
+
+.event-date {
+  text-align: center;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-maroon);
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-2);
+}
+
+.event-name {
+  text-align: center;
+  font-size: var(--font-size-3xl);
+  color: var(--color-primary-maroon);
+  margin-bottom: var(--spacing-2);
+}
+
+.event-time {
+  text-align: center;
+  color: var(--color-primary-gold);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-4);
+}
+
+.event-description {
+  text-align: center;
+  line-height: var(--line-height-loose);
+  color: var(--color-gray);
+  margin-bottom: var(--spacing-4);
+}
+
+.dress-code {
+  background: var(--color-light-gray);
+  padding: var(--spacing-4);
+  border-radius: var(--border-radius-md);
+  text-align: center;
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-4);
+}
+
+.event-card.highlight .dress-code {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+@media (max-width: 768px) {
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .event-name {
+    font-size: var(--font-size-2xl);
+  }
+}

@@ -1,0 +1,24 @@
+/**
+ * Color Scheme: Burgundy & Champagne
+ * Rich and elegant
+ */
+
+:root {
+  /* Primary Colors */
+  --color-primary-maroon: #800020 !important;
+  --color-primary-gold: #F7E7CE !important;
+  --color-primary-orange: #A0522D !important;
+  --color-primary-cream: #FFF8DC !important;
+  
+  /* Accent Colors */
+  --color-accent-red: #8B0000 !important;
+  --color-accent-green: #722F37 !important;
+  --color-accent-purple: #5D3954 !important;
+  --color-accent-pink: #C04000 !important;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #800020 0%, #5D3954 100%) !important;
+  --gradient-gold: linear-gradient(135deg, #F7E7CE 0%, #D4AF37 100%) !important;
+  --gradient-sunset: linear-gradient(135deg, #800020 0%, #A0522D 50%, #F7E7CE 100%) !important;
+  --gradient-hero: linear-gradient(135deg, #800020 0%, #722F37 50%, #A0522D 100%) !important;
+}

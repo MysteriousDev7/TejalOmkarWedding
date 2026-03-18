@@ -1,0 +1,24 @@
+/**
+ * Color Scheme: Coral & Teal
+ * Vibrant and modern
+ */
+
+:root {
+  /* Primary Colors */
+  --color-primary-maroon: #FF6B6B !important;
+  --color-primary-gold: #4ECDC4 !important;
+  --color-primary-orange: #FF8B94 !important;
+  --color-primary-cream: #FFF5F5 !important;
+  
+  /* Accent Colors */
+  --color-accent-red: #FF7F7F !important;
+  --color-accent-green: #2D9CDB !important;
+  --color-accent-purple: #5F9EA0 !important;
+  --color-accent-pink: #FFB6B9 !important;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #FF6B6B 0%, #5F9EA0 100%) !important;
+  --gradient-gold: linear-gradient(135deg, #4ECDC4 0%, #2D9CDB 100%) !important;
+  --gradient-sunset: linear-gradient(135deg, #FF6B6B 0%, #FF8B94 50%, #4ECDC4 100%) !important;
+  --gradient-hero: linear-gradient(135deg, #FF6B6B 0%, #FF7F7F 50%, #FF8B94 100%) !important;
+}

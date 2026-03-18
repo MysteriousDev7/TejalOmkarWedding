@@ -1,0 +1,284 @@
+/**
+ * Hero Section Component
+ * Full-screen hero with animated elements and countdown
+ */
+
+.hero {
+  height: 100vh;
+  min-height: 600px;
+  background: var(--gradient-hero);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,122.7C1248,107,1344,85,1392,74.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+  background-size: cover;
+  background-position: bottom;
+  animation: waveAnimation 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(212,175,55,0.1) 0%, transparent 70%);
+  animation: pulseGlow 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Floating Decorative Motifs */
+.floating-motif {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23FFD700" opacity="0.1"/></svg>');
+  background-size: contain;
+  animation: float 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.motif-1 {
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.motif-2 {
+  top: 60%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.motif-3 {
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 4s;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: var(--color-white);
+  animation: fadeInUp 1.5s var(--ease-out);
+  padding: 0 var(--spacing-4);
+}
+
+/* Names */
+.bride-groom-names {
+  font-size: var(--font-size-8xl);
+  margin-bottom: var(--spacing-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-8);
+  flex-wrap: wrap;
+}
+
+.bride-name,
+.groom-name {
+  font-family: var(--font-script);
+  display: inline-block;
+  animation: slideInScale 1.5s var(--ease-out);
+  font-weight: var(--font-weight-normal);
+}
+
+.bride-name {
+  animation-delay: 0.3s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.groom-name {
+  animation-delay: 0.6s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.ampersand {
+  font-size: var(--font-size-5xl);
+  opacity: 0.8;
+  animation: rotateIn 1.5s var(--ease-bounce) 0.9s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+/* Tagline */
+.tagline {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-light);
+  margin-bottom: var(--spacing-8);
+  opacity: 0;
+  animation: fadeIn 1s var(--ease-out) 1.2s forwards;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* Wedding Date */
+.wedding-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-12);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wider);
+  opacity: 0;
+  animation: fadeInUp 1s var(--ease-out) 1.5s forwards;
+}
+
+.date-ornament {
+  width: 50px;
+  height: 2px;
+  background: var(--color-primary-gold);
+}
+
+/* Countdown Timer */
+.countdown-timer {
+  display: flex;
+  gap: var(--spacing-8);
+  justify-content: center;
+  margin-top: var(--spacing-12);
+  opacity: 0;
+  animation: fadeInUp 1s var(--ease-out) 1.8s forwards;
+}
+
+.countdown-item {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(var(--blur-md));
+  padding: var(--spacing-8);
+  border-radius: var(--border-radius-xl);
+  min-width: 100px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: all var(--transition-fast);
+}
+
+.countdown-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: var(--shadow-lg);
+}
+
+.countdown-value {
+  display: block;
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-heading);
+  animation: countdownPulse 2s ease-in-out infinite;
+  line-height: 1;
+}
+
+.countdown-label {
+  display: block;
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-widest);
+  opacity: 0.9;
+  margin-top: var(--spacing-2);
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+  z-index: 10;
+}
+
+.scroll-arrow {
+  width: 30px;
+  height: 50px;
+  border: 2px solid var(--color-white);
+  border-radius: 20px;
+  position: relative;
+}
+
+.scroll-arrow::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background: var(--color-white);
+  border-radius: 50%;
+  animation: scrollDot 2s infinite;
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+@media (max-width: 1024px) {
+  .bride-groom-names {
+    font-size: var(--font-size-6xl);
+  }
+  
+  .ampersand {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .bride-groom-names {
+    font-size: var(--font-size-5xl);
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .ampersand {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .tagline {
+    font-size: var(--font-size-lg);
+  }
+  
+  .countdown-timer {
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
+  }
+  
+  .countdown-item {
+    min-width: 80px;
+    padding: var(--spacing-4);
+  }
+  
+  .countdown-value {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .bride-groom-names {
+    font-size: var(--font-size-4xl);
+  }
+  
+  .countdown-item {
+    min-width: 70px;
+    padding: var(--spacing-3);
+  }
+  
+  .countdown-value {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .countdown-label {
+    font-size: var(--font-size-xs);
+  }
+}

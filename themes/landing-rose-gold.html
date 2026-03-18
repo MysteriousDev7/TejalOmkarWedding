@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#4B0082">
+  
+  <title>Omkar & Tejal - Wedding Invitation</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Playfair Display', serif;
+      overflow: hidden;
+      background: linear-gradient(135deg, #B76E79 0%, #E8B4B8 50%, #FFB6C1 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    /* Animated background */
+    .bg-animation {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    .floating-heart {
+      position: absolute;
+      font-size: 2rem;
+      opacity: 0.3;
+      animation: floatUp 8s infinite linear;
+      pointer-events: none;
+    }
+    
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.3;
+      }
+      90% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    
+    .floating-heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .floating-heart:nth-child(2) { left: 25%; animation-delay: 2s; }
+    .floating-heart:nth-child(3) { left: 40%; animation-delay: 4s; }
+    .floating-heart:nth-child(4) { left: 55%; animation-delay: 1s; }
+    .floating-heart:nth-child(5) { left: 70%; animation-delay: 3s; }
+    .floating-heart:nth-child(6) { left: 85%; animation-delay: 5s; }
+    
+    /* Main content */
+    .landing-container {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 2rem;
+      animation: fadeInScale 1s ease-out;
+    }
+    
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    .ornament {
+      font-size: 3rem;
+      color: #FFD700;
+      margin-bottom: 1rem;
+      animation: sparkle 2s ease-in-out infinite;
+    }
+    
+    @keyframes sparkle {
+      0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+      }
+    }
+    
+    .couple-names {
+      font-family: 'Great Vibes', cursive;
+      font-size: 4rem;
+      color: #E6C9A8;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: slideDown 1s ease-out 0.3s both;
+    }
+    
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .ampersand {
+      display: block;
+      font-size: 3rem;
+      margin: 0.5rem 0;
+      opacity: 0.8;
+    }
+    
+    .tagline {
+      font-size: 1.5rem;
+      color: white;
+      margin-bottom: 3rem;
+      font-weight: 300;
+      letter-spacing: 2px;
+      animation: slideUp 1s ease-out 0.5s both;
+    }
+    
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .open-invite-btn {
+      display: inline-block;
+      padding: 1.5rem 3rem;
+      background: linear-gradient(135deg, #E6C9A8 0%, #D4AF37 100%);
+      color: #B76E79;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+      cursor: pointer;
+      border: none;
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: bounceIn 1s ease-out 0.7s both;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    @keyframes bounceIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      60% {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    
+    .open-invite-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .open-invite-btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .open-invite-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
+    }
+    
+    .open-invite-btn:active {
+      transform: translateY(-2px) scale(0.98);
+    }
+    
+    .btn-text {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .wedding-date {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.9);
+      animation: fadeIn 1s ease-out 1s both;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    /* Celebration overlay */
+    .celebration-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle, rgba(255,215,0,0.2) 0%, rgba(75,0,130,0.8) 100%);
+      z-index: 1000;
+      display: none;
+      pointer-events: none;
+      animation: celebrationFade 2s ease-out forwards;
+    }
+    
+    .celebration-overlay.active {
+      display: block;
+      pointer-events: auto;
+    }
+    
+    @keyframes celebrationFade {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+    
+    /* Confetti */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #FFD700;
+      animation: confettiFall 3s ease-out forwards;
+    }
+    
+    @keyframes confettiFall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+    
+    /* Sparkles */
+    #sparkles-container {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      animation: sparkleAnimation 1.5s ease-out infinite;
+      pointer-events: none;
+    }
+    
+    @keyframes sparkleAnimation {
+      0%, 100% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      .couple-names {
+        font-size: 2.5rem;
+      }
+      
+      .tagline {
+        font-size: 1.1rem;
+      }
+      
+      .open-invite-btn {
+        padding: 1.2rem 2.5rem;
+        font-size: 1.1rem;
+      }
+      
+      .floating-heart {
+        font-size: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .couple-names {
+        font-size: 2rem;
+      }
+      
+      .tagline {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+      }
+      
+      .open-invite-btn {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Animated background -->
+  <div class="bg-animation">
+    <div class="floating-heart">❤️</div>
+    <div class="floating-heart">💕</div>
+    <div class="floating-heart">💖</div>
+    <div class="floating-heart">💗</div>
+    <div class="floating-heart">💝</div>
+    <div class="floating-heart">💞</div>
+  </div>
+  
+  <!-- Sparkles -->
+  <div id="sparkles-container"></div>
+  
+  <!-- Main content -->
+  <div class="landing-container">
+    <div class="ornament">✦</div>
+    <h1 class="couple-names">
+      Tejal
+      <span class="ampersand">&</span>
+      Omkar
+    </h1>
+    <p class="tagline">Are Getting Married</p>
+    <button class="open-invite-btn" type="button">
+      <span class="btn-text">Open Invitation</span>
+    </button>
+    <p class="wedding-date">19th June 2026</p>
+  </div>
+  
+  <!-- Celebration overlay -->
+  <div class="celebration-overlay" id="celebration"></div>
+  
+  <script>
+    // Create sparkles
+    function createSparkles() {
+      const container = document.getElementById('sparkles-container');
+      for (let i = 0; i < 20; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = Math.random() * 100 + '%';
+        sparkle.style.top = Math.random() * 100 + '%';
+        sparkle.style.animationDelay = Math.random() * 2 + 's';
+        container.appendChild(sparkle);
+      }
+    }
+    
+    // Create confetti
+    function createConfetti() {
+      const colors = ['#FFD700', '#FFA500', '#FF69B4', '#9370DB', '#FF1493'];
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.top = '-10px';
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDelay = Math.random() * 0.5 + 's';
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        document.body.appendChild(confetti);
+        
+        // Remove after animation
+        setTimeout(() => confetti.remove(), 3000);
+      }
+    }
+    
+    // Open invitation with celebration
+    let isOpening = false;
+    function openInvite() {
+      // Prevent multiple clicks
+      if (isOpening) return;
+      isOpening = true;
+      
+      const celebration = document.getElementById('celebration');
+      celebration.classList.remove('active'); // Reset first
+      
+      // Force reflow to restart animation
+      void celebration.offsetWidth;
+      
+      celebration.classList.add('active');
+      
+      // Create confetti
+      createConfetti();
+      
+      // Add haptic feedback (vibration on mobile)
+      if (navigator.vibrate) {
+        navigator.vibrate([100, 50, 100]);
+      }
+      
+      // Redirect to main invitation after celebration
+      setTimeout(() => {
+        window.location.href = 'invite-rose-gold.html';
+      }, 1500);
+    }
+
+    function resetLandingState() {
+      isOpening = false;
+      const celebration = document.getElementById('celebration');
+      celebration.classList.remove('active');
+    }
+    
+    // Initialize sparkles
+    createSparkles();
+
+    // Ensure state resets when returning via back button (bfcache)
+    window.addEventListener('pageshow', resetLandingState);
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) resetLandingState();
+    });
+    
+    // Add touch feedback for mobile
+    const btn = document.querySelector('.open-invite-btn');
+    btn.addEventListener('click', openInvite);
+    btn.addEventListener('touchstart', function() {
+      this.style.transform = 'scale(0.95)';
+    });
+    btn.addEventListener('touchend', function() {
+      this.style.transform = 'scale(1)';
+    });
+  </script>
+  
+</body>
+</html>

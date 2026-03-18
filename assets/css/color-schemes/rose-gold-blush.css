@@ -1,0 +1,24 @@
+/**
+ * Color Scheme: Rose Gold & Blush Pink
+ * Romantic and modern
+ */
+
+:root {
+  /* Primary Colors */
+  --color-primary-maroon: #B76E79 !important;
+  --color-primary-gold: #E6C9A8 !important;
+  --color-primary-orange: #FFB6C1 !important;
+  --color-primary-cream: #FFF5F7 !important;
+  
+  /* Accent Colors */
+  --color-accent-red: #C9A0A0 !important;
+  --color-accent-green: #D4A5A5 !important;
+  --color-accent-purple: #E8B4B8 !important;
+  --color-accent-pink: #FFC0CB !important;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #B76E79 0%, #E8B4B8 100%) !important;
+  --gradient-gold: linear-gradient(135deg, #E6C9A8 0%, #D4AF37 100%) !important;
+  --gradient-sunset: linear-gradient(135deg, #B76E79 0%, #FFB6C1 50%, #E6C9A8 100%) !important;
+  --gradient-hero: linear-gradient(135deg, #B76E79 0%, #E8B4B8 50%, #FFB6C1 100%) !important;
+}

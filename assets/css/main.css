@@ -1,0 +1,33 @@
+/**
+ * Main CSS File
+ * Imports all component stylesheets in the correct order
+ */
+
+/* Base Styles */
+@import url('variables.css');
+@import url('reset.css');
+@import url('animations.css');
+@import url('utilities.css');
+
+/* Components */
+@import url('components/navigation.css');
+@import url('components/hero.css');
+@import url('components/timeline.css');
+@import url('components/events.css');
+@import url('components/dress-code.css');
+@import url('components/venue.css');
+@import url('components/gallery.css');
+@import url('components/instagram.css');
+@import url('components/footer.css');
+
+/* Advanced Transitions & Fancy Effects */
+@import url('advanced-transitions.css');
+@import url('extra-animations.css');
+
+/* Mobile Responsive Styles */
+@import url('mobile-responsive.css');
+@import url('touch-optimizations.css');
+@import url('mobile-animations.css');
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap');

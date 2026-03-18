@@ -1,0 +1,187 @@
+{
+  "wedding": {
+    "groom": {
+      "firstName": "Omkar",
+      "middleName": "Umesh",
+      "lastName": "Deshpande",
+      "fullName": "Omkar Umesh Deshpande"
+    },
+    "bride": {
+      "firstName": "Tejal",
+      "middleName": "Jayant",
+      "lastName": "Kapadi",
+      "fullName": "Tejal Jayant Kapadi"
+    },
+    "date": "2026-06-19",
+    "time": "18:00",
+    "hashtag": "TejOmay",
+    "instagramUrl": "https://instagram.com/explore/tags/TejOmay/"
+  },
+  "venue": {
+    "name": "The Grand Maharaja Palace",
+    "address": {
+      "line1": "Survey No. 123, Mumbai-Pune Highway",
+      "line2": "Lonavala, Maharashtra 410401",
+      "country": "India"
+    },
+    "contact": {
+      "person": "Mr. Umesh Deshpande",
+      "phone": "+91 98765 43210",
+      "email": "events@grandmaharaja.com"
+    },
+    "coordinates": {
+      "latitude": "18.75",
+      "longitude": "73.4"
+    },
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.123456789!2d73.4!3d18.75!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDQ1JzAwLjAiTiA3M8KwMjQnMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
+  },
+  "events": [
+    {
+      "id": "mehendi",
+      "name": "Mehendi Ceremony",
+      "date": "2026-06-17",
+      "time": "15:00-19:00",
+      "icon": "🎨",
+      "description": "A vibrant and joyous ceremony where intricate henna designs adorn the bride's hands and feet. This traditional ritual is accompanied by folk songs, dance, and celebration. The rich aroma of mehendi and the sound of laughter fill the air as women gather to bless the bride.",
+      "dressCode": "Bright traditional wear - Yellow, Green, or Orange"
+    },
+    {
+      "id": "haldi",
+      "name": "Haldi Ceremony",
+      "date": "2026-06-18",
+      "time": "10:00-12:00",
+      "icon": "✨",
+      "description": "The sacred Haldi ceremony where turmeric paste is applied to the bride and groom in their respective homes. This auspicious ritual is believed to bless the couple with prosperity and ward off evil spirits. The yellow hue symbolizes purity and new beginnings.",
+      "dressCode": "Comfortable traditional attire in Yellow"
+    },
+    {
+      "id": "sangeet",
+      "name": "Sangeet Night",
+      "date": "2026-06-18",
+      "time": "19:00-23:00",
+      "icon": "🎵",
+      "description": "Get ready for an evening of music, dance, and entertainment! Both families come together to perform choreographed dances, sing songs, and celebrate the upcoming union. It's a night of friendly competition, laughter, and unforgettable memories.",
+      "dressCode": "Glamorous Indo-Western or Traditional attire"
+    },
+    {
+      "id": "wedding",
+      "name": "Wedding Ceremony (Lagna)",
+      "date": "2026-06-19",
+      "time": "18:00-22:00",
+      "icon": "💍",
+      "description": "The main event! The sacred Maharashtrian wedding ceremony where Tejal and Omkar will exchange vows and garlands under the traditional mandap. Witness the beautiful rituals including the Antarpat, Kanyadaan, and Saptapadi as they begin their journey as husband and wife.",
+      "dressCode": "Traditional Maharashtrian - Nauvari Saree/Paithani for ladies, Kurta-Pyjama/Sherwani for gentlemen",
+      "highlight": true
+    },
+    {
+      "id": "reception",
+      "name": "Reception",
+      "date": "2026-06-19",
+      "time": "22:00-01:00",
+      "icon": "🎉",
+      "description": "Join us for an elegant reception dinner as we celebrate the newlyweds! Enjoy delicious Maharashtrian cuisine, music, and dancing. It's time to shower the couple with blessings and create beautiful memories together.",
+      "dressCode": "Formal/Semi-Formal attire"
+    }
+  ],
+  "timeline": [
+    {
+      "id": "childhood",
+      "period": "1995-2000",
+      "title": "Childhood Friends",
+      "description": "It all started in the neighborhood playground where two curious kids met. Little did we know that the friend we made while building sandcastles would one day become our life partner. Our innocent friendship was filled with shared tiffins, bicycle rides, and endless giggles.",
+      "image": "assets/images/timeline/childhood.jpg"
+    },
+    {
+      "id": "school",
+      "period": "2000-2010",
+      "title": "School Days",
+      "description": "Through the years of homework, exams, and school festivals, our bond grew stronger. We were each other's study partners, confidants, and partners in crime. From sharing lunch boxes to celebrating victories together, every moment was special.",
+      "image": "assets/images/timeline/school.jpg"
+    },
+    {
+      "id": "college",
+      "period": "2013-2017",
+      "title": "College Years",
+      "description": "College brought new adventures and deeper conversations. Late-night study sessions turned into heart-to-heart talks. We discovered shared dreams, supported each other's ambitions, and realized that our friendship was evolving into something more profound.",
+      "image": "assets/images/timeline/college.jpg"
+    },
+    {
+      "id": "youngadults",
+      "period": "2017-2022",
+      "title": "Realizing Our Love",
+      "description": "As we stepped into the professional world, distance couldn't diminish what we felt. Weekend meetups, endless phone calls, and constant support made us realize - this wasn't just friendship anymore. We had fallen deeply in love with our best friend.",
+      "image": "assets/images/timeline/young-adults.jpg"
+    },
+    {
+      "id": "proposal",
+      "period": "2025",
+      "title": "The Proposal",
+      "description": "On a beautiful evening at our favorite spot from childhood, Omkar got down on one knee. With tears of joy and hearts full of love, we decided to make our forever official. The playground where it all began witnessed the beginning of our new journey.",
+      "image": "assets/images/timeline/proposal.jpg"
+    },
+    {
+      "id": "wedding",
+      "period": "June 19, 2026",
+      "title": "Our Big Day",
+      "description": "And now, surrounded by family and friends who have watched our love story unfold, we're ready to say 'I do'. Join us as we celebrate not just a wedding, but a lifetime of friendship, love, and togetherness.",
+      "image": "assets/images/timeline/wedding.jpg"
+    }
+  ],
+  "gallery": [
+    {
+      "id": "photo1",
+      "src": "assets/images/gallery/photo-1.jpg",
+      "alt": "Engagement Ceremony",
+      "caption": "Engagement Ceremony"
+    },
+    {
+      "id": "photo2",
+      "src": "assets/images/gallery/photo-2.jpg",
+      "alt": "Pre-Wedding Shoot",
+      "caption": "Pre-Wedding Shoot"
+    },
+    {
+      "id": "photo3",
+      "src": "assets/images/gallery/photo-3.jpg",
+      "alt": "Together Forever",
+      "caption": "Together Forever"
+    },
+    {
+      "id": "photo4",
+      "src": "assets/images/gallery/photo-4.jpg",
+      "alt": "Candid Moments",
+      "caption": "Candid Moments"
+    },
+    {
+      "id": "photo5",
+      "src": "assets/images/gallery/photo-5.jpg",
+      "alt": "Love & Laughter",
+      "caption": "Love & Laughter"
+    },
+    {
+      "id": "photo6",
+      "src": "assets/images/gallery/photo-6.jpg",
+      "alt": "Beautiful Memories",
+      "caption": "Beautiful Memories"
+    }
+  ],
+  "theme": {
+    "colors": {
+      "primary": "#800020",
+      "secondary": "#D4AF37",
+      "accent": "#FF6B35",
+      "light": "#FFF8DC"
+    },
+    "fonts": {
+      "heading": "Playfair Display",
+      "script": "Great Vibes",
+      "body": "Poppins"
+    }
+  },
+  "content": {
+    "heroTagline": "Two hearts, one soul, forever together",
+    "introText": "Join us as we celebrate the union of two souls who have journeyed together since childhood. From innocent friends to life partners, our story is one of love, laughter, and endless memories. We invite you to be part of our special day as we begin this beautiful new chapter together.",
+    "instagramText": "Help us capture every beautiful moment! Share your photos and videos from our wedding celebrations on Instagram using our special hashtag. We can't wait to see the wedding through your eyes and relive these precious memories together.",
+    "footerText": "We are incredibly grateful for your love and support as we begin this new chapter of our lives. Your presence on our special day means the world to us. Let's create beautiful memories together!"
+  }
+}

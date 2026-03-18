@@ -1,0 +1,127 @@
+/**
+ * Navigation Component
+ * Fixed navigation bar with scroll effects
+ */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-index-fixed);
+  background: transparent;
+  padding: var(--spacing-4) 0;
+  transition: all var(--transition-medium);
+}
+
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(var(--blur-md));
+  padding: var(--spacing-3) 0;
+}
+
+.nav-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-family: var(--font-script);
+  font-size: var(--font-size-4xl);
+  color: var(--color-white);
+  transition: color var(--transition-fast);
+  font-weight: var(--font-weight-normal);
+}
+
+.navbar.scrolled .nav-logo {
+  color: var(--color-primary-maroon);
+}
+
+.nav-menu {
+  display: flex;
+  gap: var(--spacing-8);
+  align-items: center;
+}
+
+.nav-menu li {
+  list-style: none;
+}
+
+.nav-menu a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+  position: relative;
+  transition: color var(--transition-fast);
+  padding: var(--spacing-2) 0;
+  display: inline-block;
+}
+
+.navbar.scrolled .nav-menu a {
+  color: var(--color-dark-gray);
+}
+
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-gold);
+  transition: width var(--transition-fast);
+}
+
+.nav-menu a:hover::after,
+.nav-menu a:focus-visible::after {
+  width: 100%;
+}
+
+.nav-menu a:hover,
+.nav-menu a:focus-visible {
+  color: var(--color-primary-gold);
+}
+
+/* Mobile Menu Toggle (Hidden by default, shown in responsive) */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  cursor: pointer;
+  padding: var(--spacing-2);
+}
+
+.nav-toggle span {
+  width: 25px;
+  height: 3px;
+  background: var(--color-white);
+  transition: all var(--transition-fast);
+  border-radius: var(--border-radius-sm);
+}
+
+.navbar.scrolled .nav-toggle span {
+  background: var(--color-primary-maroon);
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+  
+  .nav-toggle {
+    display: flex;
+  }
+  
+  .nav-logo {
+    font-size: var(--font-size-3xl);
+  }
+}

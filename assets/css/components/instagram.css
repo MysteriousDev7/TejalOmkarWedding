@@ -1,0 +1,78 @@
+/**
+ * Instagram Section Component
+ * Social media integration section
+ */
+
+.instagram-section {
+  padding: var(--spacing-xl) 0;
+  background: var(--gradient-primary);
+  color: var(--color-white);
+  text-align: center;
+}
+
+.instagram-section .section-title {
+  color: var(--color-white);
+}
+
+.instagram-section .decorative-line {
+  background: var(--color-white);
+}
+
+.instagram-section .decorative-line::before,
+.instagram-section .decorative-line::after {
+  background: var(--color-white);
+}
+
+.instagram-section .section-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.instagram-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hashtag-display {
+  margin: var(--spacing-12) 0;
+}
+
+.hashtag {
+  font-family: var(--font-script);
+  font-size: var(--font-size-7xl);
+  color: var(--color-primary-gold);
+  display: inline-block;
+  animation: pulse 2s ease-in-out infinite;
+  font-weight: var(--font-weight-normal);
+}
+
+.instagram-text {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-loose);
+  margin-bottom: var(--spacing-12);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.instagram-section .btn-primary {
+  background: var(--color-white);
+  color: var(--color-primary-maroon);
+}
+
+.instagram-section .btn-primary:hover {
+  background: var(--color-primary-gold);
+  color: var(--color-white);
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+@media (max-width: 768px) {
+  .hashtag {
+    font-size: var(--font-size-5xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .hashtag {
+    font-size: var(--font-size-4xl);
+  }
+}

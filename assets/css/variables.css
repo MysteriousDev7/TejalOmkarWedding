@@ -1,0 +1,233 @@
+/**
+ * CSS Variables & Design Tokens
+ * Centralized design system for easy theming and customization
+ */
+
+:root {
+  /* ===================================
+     COLOR PALETTE - Maharashtrian Theme
+     =================================== */
+  
+  /* Primary Colors */
+  --color-primary-maroon: #800020;
+  --color-primary-gold: #D4AF37;
+  --color-primary-orange: #FF6B35;
+  --color-primary-cream: #FFF8DC;
+  
+  /* Accent Colors */
+  --color-accent-red: #DC143C;
+  --color-accent-green: #2D5016;
+  --color-accent-purple: #4B0082;
+  --color-accent-pink: #FF1493;
+  
+  /* Neutral Colors */
+  --color-white: #FFFFFF;
+  --color-off-white: #FAF9F6;
+  --color-light-gray: #F5F5F5;
+  --color-gray: #808080;
+  --color-dark-gray: #333333;
+  --color-black: #000000;
+  
+  /* Semantic Colors */
+  --color-success: #28a745;
+  --color-warning: #ffc107;
+  --color-error: #dc3545;
+  --color-info: #17a2b8;
+  
+  /* ===================================
+     GRADIENTS
+     =================================== */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary-maroon) 0%, var(--color-accent-red) 100%);
+  --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+  --gradient-sunset: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FFD700 100%);
+  --gradient-overlay: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
+  --gradient-hero: linear-gradient(135deg, #800020 0%, #DC143C 50%, #FF6B35 100%);
+  
+  /* ===================================
+     TYPOGRAPHY
+     =================================== */
+  
+  /* Font Families */
+  --font-heading: 'Playfair Display', serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-body: 'Poppins', sans-serif;
+  
+  /* Font Sizes */
+  --font-size-xs: 0.75rem;      /* 12px */
+  --font-size-sm: 0.875rem;     /* 14px */
+  --font-size-base: 1rem;       /* 16px */
+  --font-size-lg: 1.125rem;     /* 18px */
+  --font-size-xl: 1.25rem;      /* 20px */
+  --font-size-2xl: 1.5rem;      /* 24px */
+  --font-size-3xl: 1.875rem;    /* 30px */
+  --font-size-4xl: 2.25rem;     /* 36px */
+  --font-size-5xl: 3rem;        /* 48px */
+  --font-size-6xl: 3.75rem;     /* 60px */
+  --font-size-7xl: 4.5rem;      /* 72px */
+  --font-size-8xl: 6rem;        /* 96px */
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.6;
+  --line-height-loose: 1.8;
+  
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+  
+  /* ===================================
+     SPACING SYSTEM
+     =================================== */
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;   /* 4px */
+  --spacing-2: 0.5rem;    /* 8px */
+  --spacing-3: 0.75rem;   /* 12px */
+  --spacing-4: 1rem;      /* 16px */
+  --spacing-5: 1.25rem;   /* 20px */
+  --spacing-6: 1.5rem;    /* 24px */
+  --spacing-8: 2rem;      /* 32px */
+  --spacing-10: 2.5rem;   /* 40px */
+  --spacing-12: 3rem;     /* 48px */
+  --spacing-16: 4rem;     /* 64px */
+  --spacing-20: 5rem;     /* 80px */
+  --spacing-24: 6rem;     /* 96px */
+  --spacing-32: 8rem;     /* 128px */
+  
+  /* Semantic Spacing */
+  --spacing-xs: var(--spacing-2);
+  --spacing-sm: var(--spacing-4);
+  --spacing-md: var(--spacing-8);
+  --spacing-lg: var(--spacing-16);
+  --spacing-xl: var(--spacing-24);
+  
+  /* ===================================
+     LAYOUT
+     =================================== */
+  --container-max-width: 1200px;
+  --container-padding: var(--spacing-8);
+  
+  /* Breakpoints (for reference in media queries) */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  
+  /* Z-index Scale */
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1020;
+  --z-index-fixed: 1030;
+  --z-index-modal-backdrop: 1040;
+  --z-index-modal: 1050;
+  --z-index-popover: 1060;
+  --z-index-tooltip: 1070;
+  
+  /* ===================================
+     BORDERS & RADIUS
+     =================================== */
+  --border-width-thin: 1px;
+  --border-width-medium: 2px;
+  --border-width-thick: 4px;
+  
+  --border-radius-sm: 0.25rem;   /* 4px */
+  --border-radius-md: 0.5rem;    /* 8px */
+  --border-radius-lg: 0.75rem;   /* 12px */
+  --border-radius-xl: 1rem;      /* 16px */
+  --border-radius-2xl: 1.5rem;   /* 24px */
+  --border-radius-full: 9999px;
+  
+  /* ===================================
+     SHADOWS
+     =================================== */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.25);
+  --shadow-2xl: 0 24px 64px rgba(0, 0, 0, 0.3);
+  
+  /* Colored Shadows */
+  --shadow-gold: 0 4px 20px rgba(212, 175, 55, 0.3);
+  --shadow-maroon: 0 4px 20px rgba(128, 0, 32, 0.3);
+  
+  /* ===================================
+     TRANSITIONS & ANIMATIONS
+     =================================== */
+  
+  /* Transition Durations */
+  --duration-instant: 0.1s;
+  --duration-fast: 0.2s;
+  --duration-normal: 0.3s;
+  --duration-medium: 0.5s;
+  --duration-slow: 0.7s;
+  --duration-slower: 1s;
+  
+  /* Transition Timing Functions */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Combined Transitions */
+  --transition-fast: var(--duration-fast) var(--ease-out);
+  --transition-normal: var(--duration-normal) var(--ease-in-out);
+  --transition-medium: var(--duration-medium) var(--ease-in-out);
+  --transition-slow: var(--duration-slow) var(--ease-in-out);
+  
+  /* ===================================
+     EFFECTS
+     =================================== */
+  --blur-sm: 4px;
+  --blur-md: 8px;
+  --blur-lg: 16px;
+  --blur-xl: 24px;
+  
+  --opacity-0: 0;
+  --opacity-10: 0.1;
+  --opacity-20: 0.2;
+  --opacity-30: 0.3;
+  --opacity-40: 0.4;
+  --opacity-50: 0.5;
+  --opacity-60: 0.6;
+  --opacity-70: 0.7;
+  --opacity-80: 0.8;
+  --opacity-90: 0.9;
+  --opacity-100: 1;
+}
+
+/* ===================================
+   DARK MODE SUPPORT (Optional)
+   =================================== */
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    Override colors for dark mode if needed
+    --color-off-white: #1a1a1a;
+    --color-dark-gray: #f5f5f5;
+  }
+} */
+
+/* ===================================
+   REDUCED MOTION
+   =================================== */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-instant: 0.05s;
+    --duration-fast: 0.15s;
+    --duration-normal: 0.2s;
+    --duration-medium: 0.25s;
+    --duration-slow: 0.35s;
+    --duration-slower: 0.45s;
+  }
+}
