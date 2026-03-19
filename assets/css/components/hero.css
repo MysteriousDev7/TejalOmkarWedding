@@ -14,6 +14,14 @@
   overflow: hidden;
 }
 
+@media (min-width: 769px) {
+  .hero {
+    padding-top: 110px;
+    box-sizing: border-box;
+    align-items: flex-start;
+  }
+}
+
 .hero::before {
   content: '';
   position: absolute;
