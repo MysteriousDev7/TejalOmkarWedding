@@ -9,8 +9,26 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#4B0082">
   
-  <title>Omkar & Tejal - Wedding Invitation</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Omkar & Tejal are getting married! Join us on 19th June 2026 to celebrate our special day.">
+  <meta name="keywords" content="wedding, invitation, Omkar, Tejal, marriage, celebration">
+  <meta name="author" content="Omkar & Tejal">
   
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Omkar & Tejal - Wedding Invitation">
+  <meta property="og:description" content="We would like to invite you to our big day - 19th June 2026">
+  <meta property="og:type" content="website">
+  
+  <title>Omkar & Tejal - Wedding Invitation | 19th June 2026</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/icons/favicon.png">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
   
   <style>
@@ -55,305 +73,201 @@
     }
 
     body {
-      overscroll-behavior: none;
-      -webkit-overflow-scrolling: auto;
+      overscroll-behavior-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overflow-y: auto;
+    }
+
+    body.curtain-active {
+      overflow: hidden;
       position: fixed;
       inset: 0;
     }
 
-    .envelope-stage {
+    #invitation-content {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .curtain-stage {
       position: fixed;
       inset: 0;
-      z-index: 10;
+      z-index: 9999;
       width: 100vw;
       height: 100vh;
       height: 100svh;
       height: 100dvh;
       display: grid;
       place-items: center;
-      perspective: 1200px;
-      background:
-        radial-gradient(circle at 20% 15%, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0) 38%),
-        radial-gradient(circle at 75% 30%, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 42%),
-        linear-gradient(115deg, rgba(255,255,255,0.85) 0%, rgba(245,239,232,0.92) 45%, rgba(255,255,255,0.86) 100%),
-        repeating-linear-gradient(135deg, rgba(120, 90, 160, 0.06) 0px, rgba(120, 90, 160, 0.06) 2px, rgba(0,0,0,0) 14px, rgba(0,0,0,0) 28px);
+      pointer-events: none;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+      background: transparent;
+    }
+
+    body.curtain-lifted .curtain-stage {
+      opacity: 0;
+      visibility: hidden;
     }
     
-    /* Keep the initial view clean: just the envelope */
-    
-    /* Envelope */
-    .envelope {
+    .curtain {
       position: relative;
       width: 100vw;
       height: 100vh;
       height: 100svh;
       height: 100dvh;
-      transform-style: preserve-3d;
+      overflow: hidden;
     }
 
-    .env-shadow {
+    .curtain-panel {
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at center, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0) 62%);
-      transform: translateY(26px);
-      filter: blur(14px);
+      transform: translate3d(0, 0, 0);
+      transition: transform 3s cubic-bezier(0.2, 0.85, 0.2, 1);
+      will-change: transform;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      background:
+        radial-gradient(circle at 28% 14%, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.0) 55%),
+        radial-gradient(circle at 70% 90%, rgba(0,0,0,0.14) 0%, rgba(0,0,0,0.0) 55%),
+        linear-gradient(155deg, rgba(58, 32, 95, 0.98) 0%, rgba(76, 44, 120, 0.98) 55%, rgba(45, 24, 80, 0.98) 100%);
+      box-shadow: 0 34px 90px rgba(0,0,0,0.35);
+      clip-path: polygon(
+        0% 0%, 100% 0%, 100% 100%, 99% 100%, 98% 100%, 97% 100%, 96% 100%, 95% 100%, 94% 100%, 93% 100%, 92% 100%, 91% 100%, 90% 100%, 89% 100%, 88% 100%, 87% 100%, 86% 100%, 85% 100%, 84% 100%, 83% 100%, 82% 100%, 81% 100%, 80% 100%, 79% 100%, 78% 100%, 77% 100%, 76% 100%, 75% 100%, 74% 100%, 73% 100%, 72% 100%, 71% 100%, 70% 100%, 69% 100%, 68% 100%, 67% 100%, 66% 100%, 65% 100%, 64% 100%, 63% 100%, 62% 100%, 61% 100%, 60% 100%, 59% 100%, 58% 100%, 57% 100%, 56% 100%, 55% 100%, 54% 100%, 53% 100%, 52% 100%, 51% 100%, 50% 100%, 49% 100%, 48% 100%, 47% 100%, 46% 100%, 45% 100%, 44% 100%, 43% 100%, 42% 100%, 41% 100%, 40% 100%, 39% 100%, 38% 100%, 37% 100%, 36% 100%, 35% 100%, 34% 100%, 33% 100%, 32% 100%, 31% 100%, 30% 100%, 29% 100%, 28% 100%, 27% 100%, 26% 100%, 25% 100%, 24% 100%, 23% 100%, 22% 100%, 21% 100%, 20% 100%, 19% 100%, 18% 100%, 17% 100%, 16% 100%, 15% 100%, 14% 100%, 13% 100%, 12% 100%, 11% 100%, 10% 100%, 9% 100%, 8% 100%, 7% 100%, 6% 100%, 5% 100%, 4% 100%, 3% 100%, 2% 100%, 1% 100%, 0% 100%
+      );
+    }
+
+    .curtain-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(90deg, 
+          rgba(255,255,255,0.08) 0px, 
+          rgba(255,255,255,0.08) 3px, 
+          rgba(0,0,0,0.04) 3px,
+          rgba(0,0,0,0.04) 6px,
+          rgba(255,255,255,0.06) 6px,
+          rgba(255,255,255,0.06) 12px,
+          rgba(0,0,0,0.02) 12px,
+          rgba(0,0,0,0.02) 18px,
+          rgba(255,255,255,0.05) 18px,
+          rgba(255,255,255,0.05) 24px,
+          rgba(0,0,0,0.03) 24px,
+          rgba(0,0,0,0.03) 30px
+        ),
+        linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(0,0,0,0.26) 100%);
       opacity: 0.45;
       pointer-events: none;
     }
 
-    .env-body {
-      position: absolute;
-      inset: 0;
-      border-radius: 0;
-      background:
-        radial-gradient(circle at 24% 18%, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.0) 55%),
-        radial-gradient(circle at 78% 84%, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.0) 52%),
-        linear-gradient(155deg, rgba(58, 32, 95, 0.96) 0%, rgba(76, 44, 120, 0.96) 55%, rgba(45, 24, 80, 0.96) 100%);
-      box-shadow:
-        0 34px 90px rgba(0,0,0,0.35),
-        inset 0 1px 0 rgba(255,255,255,0.15),
-        inset 0 0 0 1px rgba(255,255,255,0.06);
-      overflow: hidden;
-    }
-
-    .env-body::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.10) 0%, rgba(0,0,0,0.14) 100%),
-        repeating-linear-gradient(
-          0deg,
-          rgba(255,255,255,0.0) 0px,
-          rgba(255,255,255,0.0) 7px,
-          rgba(0,0,0,0.06) 8px
-        );
-      opacity: 0.22;
-      pointer-events: none;
-    }
-
-    .env-body::after {
-      content: '';
-      position: absolute;
-      inset: 20px;
-      border: 1px solid rgba(212, 175, 55, 0.22);
-      border-radius: 0;
-      box-shadow:
-        inset 0 0 26px rgba(0, 0, 0, 0.12);
-      pointer-events: none;
-    }
-
-    .env-front {
-      position: absolute;
-      inset: 0;
-      border-radius: 0;
-      pointer-events: none;
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,0.08);
-    }
-
-    .env-front::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0.16) 100%);
-      border-radius: 0;
-    }
-
-    .env-front::after {
+    .curtain-panel::after {
       content: '';
       position: absolute;
       left: 0;
       right: 0;
       bottom: 0;
-      height: 62%;
-      background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.18) 100%);
-      clip-path: polygon(0 0, 50% 56%, 100% 0, 100% 100%, 0 100%);
-      border-radius: 0;
-      opacity: 0.70;
-    }
-
-    /* Side folds (diagonal panels like the reference mockup) */
-    .env-front {
-      overflow: hidden;
-    }
-
-    .env-front .fold-left,
-    .env-front .fold-right {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-
-    .env-front .fold-left {
-      clip-path: polygon(0 0, 52% 50%, 0 100%);
-      background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(0,0,0,0.22) 100%);
-      opacity: 0.88;
-    }
-
-    .env-front .fold-right {
-      clip-path: polygon(100% 0, 48% 50%, 100% 100%);
-      background: linear-gradient(225deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.25) 100%);
-      opacity: 0.90;
-    }
-
-    .env-back {
-      position: absolute;
-      inset: 0;
-      border-radius: 0;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(0,0,0,0.14) 100%);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
-    }
-
-    .env-flap {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      height: 46vh;
-      transform-origin: top center;
-      transform: rotateX(0deg);
-      transition: transform 0.95s cubic-bezier(0.2, 0.9, 0.2, 1);
-      z-index: 50;
-      pointer-events: none;
-      transform-style: preserve-3d;
-      -webkit-transform-style: preserve-3d;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-    }
-
-    .env-flap::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(0,0,0,0.30) 100%);
-      clip-path: polygon(0 0, 50% 70%, 100% 0);
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-      box-shadow:
-        0 18px 44px rgba(0,0,0,0.30),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.24);
-      transform: translateZ(1px);
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-    }
-
-    .env-flap::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      height: 14px;
+      height: 40px;
       background:
         linear-gradient(90deg, rgba(212,175,55,0.0) 0%, rgba(212,175,55,0.70) 50%, rgba(212,175,55,0.0) 100%),
-        linear-gradient(180deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.0) 100%);
-      opacity: 0.75;
+        linear-gradient(180deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.0) 100%);
+      box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
+      opacity: 0.85;
       pointer-events: none;
-      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.25);
     }
 
-    .env-seal {
+    body.curtain-open .curtain-panel {
+      transform: translate3d(0, -102%, 0);
+    }
+
+    .curtain-handle {
       position: absolute;
       left: 50%;
-      top: 68vh;
-      transform: translate(-50%, -50%);
-      width: 82px;
-      height: 82px;
-      border-radius: 999px;
-      border: none;
+      bottom: 12vh;
+      transform: translateX(-50%);
+      padding: 18px 42px;
+      border-radius: 50px;
+      border: 2px solid rgba(255, 255, 255, 0.25);
       background:
-        radial-gradient(circle at 32% 28%, rgba(245, 215, 158, 0.95) 0%, rgba(170, 110, 35, 0.92) 45%, rgba(120, 75, 20, 0.95) 100%);
+        linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       box-shadow:
-        0 18px 40px rgba(0,0,0,0.40),
-        0 10px 18px rgba(0,0,0,0.22),
-        inset 0 4px 10px rgba(255,255,255,0.25),
-        inset 0 -3px 10px rgba(0,0,0,0.32);
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
       cursor: pointer;
       z-index: 90;
-      transition: transform 0.12s ease, opacity 0.4s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       -webkit-tap-highlight-color: transparent;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.95);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      pointer-events: auto;
     }
 
-    .env-seal::before {
-      content: '';
+    .curtain-handle::before {
+      content: '✦';
       position: absolute;
-      inset: -6px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.25) 0%, rgba(212, 175, 55, 0.0) 70%);
-      filter: blur(4px);
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.9rem;
+      opacity: 0.7;
       pointer-events: none;
     }
 
-    .env-seal:active {
-      transform: translate(-50%, -50%) scale(0.96);
+    .curtain-handle:hover {
+      transform: translateX(-50%) translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.35);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 100%);
+      box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
     }
 
-    .env-seal::after {
-      content: '';
+    .curtain-handle:active {
+      transform: translateX(-50%) translateY(0px) scale(0.98);
+    }
+
+    .curtain-handle::after {
+      content: '✦';
       position: absolute;
-      inset: 10px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.0) 55%);
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.9rem;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    body.curtain-opening .curtain-handle {
+      opacity: 0;
       pointer-events: none;
     }
 
     .open-instruction {
       position: absolute;
       left: 50%;
-      top: calc(68vh + 64px);
+      bottom: 6vh;
       transform: translateX(-50%);
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-size: 0.95rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.92);
-      background: rgba(0,0,0,0.25);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.18);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+      font-style: italic;
+      letter-spacing: 0.04em;
+      color: rgba(255, 255, 255, 0.65);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
       pointer-events: none;
       z-index: 90;
       transition: opacity 0.35s ease;
     }
 
-    body.reveal-invite .open-instruction {
+    body.curtain-opening .open-instruction {
       opacity: 0;
       transition: opacity 0.35s ease;
-    }
-
-    .envelope.open + .open-instruction {
-      opacity: 0;
-    }
-
-    .envelope.open .env-flap {
-      transform: rotateX(-180deg);
-    }
-
-    .envelope.open .env-seal {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .envelope.open {
-      transition: opacity 0.55s ease, transform 0.65s ease;
-      transform: scale(1.02);
-    }
-
-    body.opening .envelope {
-      opacity: 0;
-      transform: translateY(-14px) scale(1.06);
-      transition: opacity 0.18s ease, transform 0.22s ease;
-    }
-
-    body.opening .env-shadow {
-      opacity: 0;
-      transition: opacity 0.18s ease;
     }
 
     
@@ -363,42 +277,68 @@
         padding: 0;
       }
 
-      .env-flap {
-        height: 44vh;
-      }
-      .env-seal {
-        width: 70px;
-        height: 70px;
+      .curtain-handle {
+        font-size: 1rem;
+        padding: 16px 36px;
       }
 
       .open-instruction {
-        top: calc(68vh + 58px);
+        font-size: 0.85rem;
       }
     }
     
     @media (max-width: 480px) {
-      .env-seal {
-        width: 66px;
-        height: 66px;
+      .curtain-handle {
+        font-size: 0.95rem;
+        padding: 14px 32px;
       }
+
+      .open-instruction {
+        font-size: 0.8rem;
+      }
+    }
+
+    /* Celebration animation styles */
+    .celebration-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100svh;
+      height: 100dvh;
+      z-index: 2147483647;
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      background: transparent;
+      transition: opacity 0.4s ease;
+      overflow: hidden;
+      transform: translate3d(0,0,0);
+      -webkit-transform: translate3d(0,0,0);
+    }
+
+    .celebration-overlay.active { opacity: 1; visibility: visible; }
+
+    .celebration-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
 
-  <div class="envelope-stage">
-    <div class="env-shadow" aria-hidden="true"></div>
-    <div class="envelope" id="envelope" aria-label="Wedding invitation envelope">
-      <div class="env-back" aria-hidden="true"></div>
-      <div class="env-body" aria-hidden="true"></div>
-
-      <div class="env-front" aria-hidden="true">
-        <div class="fold-left" aria-hidden="true"></div>
-        <div class="fold-right" aria-hidden="true"></div>
-      </div>
-      <div class="env-flap" aria-hidden="true"></div>
-      <button class="env-seal" id="openSeal" type="button" aria-label="Open invitation"></button>
-      <div class="open-instruction" aria-hidden="true">Tap the seal to open</div>
+  <div class="curtain-stage">
+    <div class="curtain" aria-label="Wedding invitation reveal curtain">
+      <div class="curtain-panel" aria-hidden="true"></div>
+      <button class="curtain-handle" id="openCurtain" type="button" aria-label="Lift the curtain">Enter</button>
+      <div class="open-instruction" aria-hidden="true">Tap to reveal our celebration</div>
     </div>
   </div>
   
@@ -410,14 +350,14 @@
       if (isOpening) return;
       isOpening = true;
 
-      const envelope = document.getElementById('envelope');
       // iPhone Safari can skip/short-circuit transitions if the class is applied in the same frame.
       // Force a layout flush and apply the class on the next animation frame.
-      envelope.classList.remove('open');
-      void envelope.offsetWidth;
+      document.body.classList.remove('curtain-open');
+      void document.body.offsetWidth;
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          envelope.classList.add('open');
+          document.body.classList.add('curtain-opening');
+          document.body.classList.add('curtain-open');
         });
       });
 
@@ -425,22 +365,25 @@
       if (navigator.vibrate) {
         navigator.vibrate([100, 50, 100]);
       }
-      
-      setTimeout(() => {
-        document.body.classList.add('opening');
-      }, 850);
 
       setTimeout(() => {
-        window.location.href = 'invite.html';
-      }, 1100);
+        document.body.classList.add('curtain-lifted');
+        document.body.classList.remove('curtain-active');
+        // Trigger celebration immediately when curtain completes
+        triggerCelebration();
+      }, 3100);
     }
 
     function resetLandingState() {
       isOpening = false;
-      document.body.classList.remove('opening');
-      const envelope = document.getElementById('envelope');
-      if (envelope) envelope.classList.remove('open');
+      document.body.classList.remove('curtain-opening');
+      document.body.classList.remove('curtain-open');
+      document.body.classList.remove('curtain-lifted');
+      document.body.classList.add('curtain-active');
     }
+
+    // Initialize curtain active state
+    document.body.classList.add('curtain-active');
 
     // Ensure state resets when returning via back button (bfcache)
     window.addEventListener('pageshow', function(event) {
@@ -452,16 +395,259 @@
       if (!document.hidden) resetLandingState();
     });
     
-    // Tap/click the seal to open
-    const seal = document.getElementById('openSeal');
-    seal.addEventListener('click', openInvite);
-    seal.addEventListener('touchstart', function() {
-      this.style.transform = 'translate(-50%, -50%) scale(0.96)';
-    });
-    seal.addEventListener('touchend', function() {
-      this.style.transform = 'translate(-50%, -50%) scale(1)';
-    });
+    // Tap/click to lift the curtain
+    const handle = document.getElementById('openCurtain');
+    handle.addEventListener('click', openInvite);
+
+    // Celebration animation
+    let celebrationRunning = false;
+    let activeAnimationFrame = 0;
+    let activeStopTimer = 0;
+
+    function triggerCelebration() {
+      if (celebrationRunning) return;
+      celebrationRunning = true;
+
+      const overlay = document.getElementById('celebrationOverlay');
+      if (!overlay) return;
+
+      overlay.style.display = 'block';
+      overlay.style.visibility = 'hidden';
+      overlay.style.opacity = '0';
+      overlay.classList.remove('active');
+      overlay.innerHTML = '';
+
+      if (activeAnimationFrame) {
+        cancelAnimationFrame(activeAnimationFrame);
+        activeAnimationFrame = 0;
+      }
+      if (activeStopTimer) {
+        clearTimeout(activeStopTimer);
+        activeStopTimer = 0;
+      }
+
+      void overlay.offsetHeight;
+      requestAnimationFrame(() => {
+        overlay.classList.add('active');
+        overlay.style.visibility = 'visible';
+        overlay.style.opacity = '1';
+        startCanvasCelebration(overlay);
+      });
+      
+      setTimeout(() => {
+        overlay.classList.remove('active');
+        overlay.style.opacity = '0';
+        overlay.style.visibility = 'hidden';
+        setTimeout(() => {
+          overlay.innerHTML = '';
+          celebrationRunning = false;
+        }, 600);
+      }, 3600);
+    }
+
+    function startCanvasCelebration(overlay) {
+      const canvas = document.createElement('canvas');
+      canvas.className = 'celebration-canvas';
+      overlay.appendChild(canvas);
+
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const dpr = Math.max(1, Math.min(3, window.devicePixelRatio || 1));
+
+      function resize() {
+        const rect = overlay.getBoundingClientRect();
+        canvas.width = Math.floor(rect.width * dpr);
+        canvas.height = Math.floor(rect.height * dpr);
+        canvas.style.width = rect.width + 'px';
+        canvas.style.height = rect.height + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        return { w: rect.width, h: rect.height };
+      }
+
+      let { w, h } = resize();
+
+      const colors = ['#FFD700', '#FFA500', '#FF69B4', '#9370DB', '#FF1493', '#00E5FF', '#7CFC00', '#FF6B6B'];
+
+      const confetti = Array.from({ length: 70 }, () => {
+        const size = Math.random() * 6 + 6;
+        return {
+          x: Math.random() * w,
+          y: -Math.random() * h * 0.25,
+          vx: (Math.random() - 0.5) * 60,
+          vy: Math.random() * 140 + 160,
+          rot: Math.random() * Math.PI,
+          vr: (Math.random() - 0.5) * 10,
+          size,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          alpha: 1,
+        };
+      });
+
+      const sparkles = Array.from({ length: 28 }, () => {
+        return {
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 2.2 + 1.2,
+          phase: Math.random() * Math.PI * 2,
+          speed: Math.random() * 2 + 1,
+        };
+      });
+
+      const start = performance.now();
+      const durationMs = 3300;
+
+      function draw(t) {
+        const elapsed = t - start;
+        const progress = Math.min(1, elapsed / durationMs);
+
+        if (elapsed > 0 && (Math.floor(elapsed) % 400) === 0) {
+          ({ w, h } = resize());
+        }
+
+        ctx.clearRect(0, 0, w, h);
+
+        for (const s of sparkles) {
+          const pulse = (Math.sin(elapsed * 0.004 * s.speed + s.phase) + 1) * 0.5;
+          const alpha = (1 - progress) * (0.15 + 0.65 * pulse);
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(255, 255, 255, ${alpha.toFixed(3)})`;
+          ctx.shadowColor = 'rgba(255, 215, 0, 0.55)';
+          ctx.shadowBlur = 10;
+          ctx.arc(s.x, s.y, s.r * (0.75 + pulse * 0.9), 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.shadowBlur = 0;
+
+        for (const p of confetti) {
+          p.x += p.vx * 0.016;
+          p.y += p.vy * 0.016;
+          p.rot += p.vr * 0.016;
+
+          const fadeStart = 0.78;
+          if (progress > fadeStart) {
+            p.alpha = Math.max(0, 1 - (progress - fadeStart) / (1 - fadeStart));
+          }
+
+          if (p.y > h + 40) {
+            p.y = -20;
+            p.x = Math.random() * w;
+          }
+
+          ctx.save();
+          ctx.globalAlpha = p.alpha;
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.8);
+          ctx.restore();
+        }
+
+        if (elapsed < durationMs) {
+          activeAnimationFrame = requestAnimationFrame(draw);
+        }
+      }
+
+      activeAnimationFrame = requestAnimationFrame(draw);
+      activeStopTimer = window.setTimeout(() => {
+        if (activeAnimationFrame) {
+          cancelAnimationFrame(activeAnimationFrame);
+          activeAnimationFrame = 0;
+        }
+      }, durationMs + 300);
+    }
   </script>
+
+  <!-- Celebration overlay -->
+  <div class="celebration-overlay" id="celebrationOverlay" aria-hidden="true"></div>
+
+  <!-- Main Invitation Content (revealed after curtain) -->
+  <div id="invitation-content">
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="nav-container">
+        <div class="nav-logo" aria-label="Tejal and Omkar">T & O</div>
+        <ul class="nav-menu" role="menubar">
+          <li role="none"><a href="#home" role="menuitem">Home</a></li>
+          <li role="none"><a href="#story" role="menuitem">Our Story</a></li>
+          <li role="none"><a href="#events" role="menuitem">Events</a></li>
+          <li role="none"><a href="#venue" role="menuitem">Venue</a></li>
+          <li role="none"><a href="#instagram" role="menuitem">Instagram</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero" role="banner">
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="floating-motif motif-1" aria-hidden="true"></div>
+      <div class="floating-motif motif-2" aria-hidden="true"></div>
+      <div class="floating-motif motif-3" aria-hidden="true"></div>
+      
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="bride-groom-names">
+            <span class="bride-name">Tejal</span>
+            <span class="ampersand" aria-hidden="true">&</span>
+            <span class="groom-name">Omkar</span>
+          </h1>
+          <p class="tagline">Two hearts, one soul, forever together</p>
+          
+          <div class="wedding-date">
+            <div class="date-ornament" aria-hidden="true"></div>
+            <time datetime="2026-06-19">19th June 2026</time>
+            <div class="date-ornament" aria-hidden="true"></div>
+          </div>
+          
+          <div class="countdown-timer" role="timer" aria-label="Countdown to wedding">
+            <div class="countdown-item">
+              <span class="countdown-value" id="days" aria-label="Days">000</span>
+              <span class="countdown-label">Days</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-value" id="hours" aria-label="Hours">00</span>
+              <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-value" id="minutes" aria-label="Minutes">00</span>
+              <span class="countdown-label">Minutes</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-value" id="seconds" aria-label="Seconds">00</span>
+              <span class="countdown-label">Seconds</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rest of invitation content placeholder -->
+    <section class="intro-section">
+      <div class="container">
+        <div class="intro-content">
+          <h2 class="section-title">We Are Getting Married!</h2>
+          <div class="decorative-line" aria-hidden="true"></div>
+          <p class="intro-text">
+            Join us as we celebrate the union of two souls who have journeyed together since childhood. 
+            From innocent friends to life partners, our story is one of love, laughter, and endless memories. 
+            We invite you to be part of our special day as we begin this beautiful new chapter together.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Load invitation page scripts -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/navigation.js"></script>
+  <script src="assets/js/countdown.js"></script>
+  <script src="assets/js/scroll-animations.js"></script>
   
 </body>
 </html>

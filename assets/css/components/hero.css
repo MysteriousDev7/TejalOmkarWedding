@@ -194,9 +194,11 @@
 .scroll-indicator {
   position: absolute;
   bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: bounce 2s infinite;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 10;
 }
 
@@ -206,6 +208,7 @@
   border: 2px solid var(--color-white);
   border-radius: 20px;
   position: relative;
+  animation: bounce 2s infinite;
 }
 
 .scroll-arrow::before {
