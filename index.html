@@ -109,7 +109,7 @@
       position: absolute;
       inset: 0;
       transform: translate3d(0, 0, 0);
-      transition: transform 3s cubic-bezier(0.2, 0.85, 0.2, 1);
+      transition: transform 3s cubic-bezier(0.2, 0.85, 0.2, 1) !important;
       will-change: transform;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
@@ -121,6 +121,29 @@
       clip-path: polygon(
         0% 0%, 100% 0%, 100% 100%, 99% 100%, 98% 100%, 97% 100%, 96% 100%, 95% 100%, 94% 100%, 93% 100%, 92% 100%, 91% 100%, 90% 100%, 89% 100%, 88% 100%, 87% 100%, 86% 100%, 85% 100%, 84% 100%, 83% 100%, 82% 100%, 81% 100%, 80% 100%, 79% 100%, 78% 100%, 77% 100%, 76% 100%, 75% 100%, 74% 100%, 73% 100%, 72% 100%, 71% 100%, 70% 100%, 69% 100%, 68% 100%, 67% 100%, 66% 100%, 65% 100%, 64% 100%, 63% 100%, 62% 100%, 61% 100%, 60% 100%, 59% 100%, 58% 100%, 57% 100%, 56% 100%, 55% 100%, 54% 100%, 53% 100%, 52% 100%, 51% 100%, 50% 100%, 49% 100%, 48% 100%, 47% 100%, 46% 100%, 45% 100%, 44% 100%, 43% 100%, 42% 100%, 41% 100%, 40% 100%, 39% 100%, 38% 100%, 37% 100%, 36% 100%, 35% 100%, 34% 100%, 33% 100%, 32% 100%, 31% 100%, 30% 100%, 29% 100%, 28% 100%, 27% 100%, 26% 100%, 25% 100%, 24% 100%, 23% 100%, 22% 100%, 21% 100%, 20% 100%, 19% 100%, 18% 100%, 17% 100%, 16% 100%, 15% 100%, 14% 100%, 13% 100%, 12% 100%, 11% 100%, 10% 100%, 9% 100%, 8% 100%, 7% 100%, 6% 100%, 5% 100%, 4% 100%, 3% 100%, 2% 100%, 1% 100%, 0% 100%
       );
+    }
+
+    .curtain-emblem {
+      position: absolute;
+      left: 50%;
+      top: 44%;
+      transform: translate(-50%, -50%);
+      width: min(520px, 82vw);
+      aspect-ratio: 16 / 9;
+      background-image: url('IMG_2437.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      opacity: 0.95;
+      mix-blend-mode: screen;
+      filter: none;
+      pointer-events: none;
+      z-index: 8;
+      transition: opacity 0.22s ease;
+    }
+
+    body.curtain-opening .curtain-emblem {
+      opacity: 0;
     }
 
     .curtain-panel::before {
@@ -264,6 +287,10 @@
         padding: 0;
       }
 
+      .curtain-panel {
+        transition: transform 5.6s cubic-bezier(0.2, 0.85, 0.2, 1) !important;
+      }
+
       .curtain-handle {
         font-size: 1rem;
         padding: 16px 36px;
@@ -301,7 +328,7 @@
       opacity: 0;
       visibility: hidden;
       background: transparent;
-      transition: opacity 0.4s ease;
+      transition: opacity 0s linear;
       overflow: hidden;
       transform: translate3d(0,0,0);
       -webkit-transform: translate3d(0,0,0);
@@ -324,6 +351,7 @@
   <div class="curtain-stage">
     <div class="curtain" aria-label="Wedding invitation reveal curtain">
       <div class="curtain-panel" aria-hidden="true"></div>
+      <div class="curtain-emblem" aria-hidden="true"></div>
       <button class="curtain-handle" id="openCurtain" type="button" aria-label="Lift the curtain">Enter</button>
       <div class="open-instruction" aria-hidden="true">Tap to reveal our celebration</div>
     </div>
@@ -353,12 +381,63 @@
         navigator.vibrate([100, 50, 100]);
       }
 
-      setTimeout(() => {
+      const panel = document.querySelector('.curtain-panel');
+      let finished = false;
+
+      function onCurtainFinished() {
+        if (finished) return;
+        finished = true;
         document.body.classList.add('curtain-lifted');
         document.body.classList.remove('curtain-active');
-        // Trigger celebration immediately when curtain completes
         triggerCelebration();
-      }, 3100);
+      }
+
+      if (panel) {
+        const onEnd = (e) => {
+          if (e.propertyName !== 'transform') return;
+          panel.removeEventListener('transitionend', onEnd);
+          onCurtainFinished();
+        };
+        panel.addEventListener('transitionend', onEnd);
+      }
+
+      // Fallback in case transitionend doesn't fire (mobile Safari edge cases)
+      // Compute the actual transition duration from CSS so we don't accidentally wait too long.
+      function parseTimeListMs(value) {
+        // Handles e.g. "5.6s" or "150ms" or comma-separated lists
+        return String(value)
+          .split(',')
+          .map((v) => v.trim())
+          .filter(Boolean)
+          .map((v) => {
+            if (v.endsWith('ms')) return parseFloat(v);
+            if (v.endsWith('s')) return parseFloat(v) * 1000;
+            const n = parseFloat(v);
+            return Number.isFinite(n) ? n : 0;
+          });
+      }
+
+      function getCurtainTransitionTotalMs(el) {
+        if (!el) return 0;
+        const cs = window.getComputedStyle(el);
+        const durs = parseTimeListMs(cs.transitionDuration);
+        const delays = parseTimeListMs(cs.transitionDelay);
+        const len = Math.max(durs.length, delays.length, 1);
+        let maxTotal = 0;
+        for (let i = 0; i < len; i++) {
+          const dur = durs[i % durs.length] || 0;
+          const del = delays[i % delays.length] || 0;
+          maxTotal = Math.max(maxTotal, dur + del);
+        }
+        return maxTotal;
+      }
+
+      // Wait until after classes are applied (next frame) so computed styles reflect the "open" transition.
+      requestAnimationFrame(() => {
+        const totalMs = getCurtainTransitionTotalMs(panel);
+        const fallbackMs = Math.max(800, Math.ceil(totalMs + 200));
+        window.setTimeout(onCurtainFinished, fallbackMs);
+      });
     }
 
     function resetLandingState() {
@@ -414,12 +493,10 @@
       }
 
       void overlay.offsetHeight;
-      requestAnimationFrame(() => {
-        overlay.classList.add('active');
-        overlay.style.visibility = 'visible';
-        overlay.style.opacity = '1';
-        startCanvasCelebration(overlay);
-      });
+      overlay.classList.add('active');
+      overlay.style.visibility = 'visible';
+      overlay.style.opacity = '1';
+      startCanvasCelebration(overlay);
       
       setTimeout(() => {
         overlay.classList.remove('active');
@@ -458,9 +535,10 @@
 
       const confetti = Array.from({ length: 70 }, () => {
         const size = Math.random() * 6 + 6;
+        const spawnInView = Math.random() < 0.55;
         return {
           x: Math.random() * w,
-          y: -Math.random() * h * 0.25,
+          y: spawnInView ? (Math.random() * h * 0.65) : (-Math.random() * h * 0.25),
           vx: (Math.random() - 0.5) * 60,
           vy: Math.random() * 140 + 160,
           rot: Math.random() * Math.PI,
@@ -536,6 +614,8 @@
         }
       }
 
+      // Render an initial frame immediately to avoid any perceived delay on mobile
+      draw(start);
       activeAnimationFrame = requestAnimationFrame(draw);
       activeStopTimer = window.setTimeout(() => {
         if (activeAnimationFrame) {
@@ -634,101 +714,69 @@
       <div class="container">
         <h2 class="section-title">Our Love Story</h2>
         <div class="decorative-line" aria-hidden="true"></div>
-        <p class="section-subtitle">A journey that began in childhood and blossomed into forever</p>
+        <p class="section-subtitle">From friends to forever</p>
         
         <div class="timeline" role="list">
           
-          <!-- Timeline Item 1: Childhood -->
+          <!-- Timeline Item 1: Friends -->
           <article class="timeline-item left" role="listitem">
             <div class="timeline-content">
               <div class="timeline-image">
-                <img src="assets/images/timeline/childhood.jpg" alt="Tejal and Omkar as childhood friends" loading="lazy">
+                <img src="IMG_2344.PNG" alt="Tejal and Omkar caricature" loading="lazy">
                 <div class="image-overlay" aria-hidden="true"></div>
               </div>
               <div class="timeline-text">
-                <span class="timeline-year">1995-2000</span>
-                <h3>Childhood Friends</h3>
-                <p>It all started in the neighborhood playground where two curious kids met. Little did we know that the friend we made while building sandcastles would one day become our life partner. Our innocent friendship was filled with shared tiffins, bicycle rides, and endless giggles.</p>
+                <span class="timeline-year">Friends</span>
+                <h3>Childhood Bond</h3>
+                <p>We started as friends and grew up side by side—laughing, learning, and cheering each other on through every chapter.</p>
               </div>
             </div>
             <div class="timeline-marker" aria-hidden="true"></div>
           </article>
 
-          <!-- Timeline Item 2: School Days -->
+          <!-- Timeline Item 2: Proposal -->
           <article class="timeline-item right" role="listitem">
             <div class="timeline-content">
               <div class="timeline-image">
-                <img src="assets/images/timeline/school.jpg" alt="Tejal and Omkar during school days" loading="lazy">
+                <img src="IMG_2344.PNG" alt="Tejal and Omkar caricature" loading="lazy">
                 <div class="image-overlay" aria-hidden="true"></div>
               </div>
               <div class="timeline-text">
-                <span class="timeline-year">2000-2010</span>
-                <h3>School Days</h3>
-                <p>Through the years of homework, exams, and school festivals, our bond grew stronger. We were each other's study partners, confidants, and partners in crime. From sharing lunch boxes to celebrating victories together, every moment was special.</p>
+                <span class="timeline-year">Proposal</span>
+                <h3>One Question</h3>
+                <p>A simple moment, a lifetime promise—our forever became official with a heartfelt “yes”.</p>
               </div>
             </div>
             <div class="timeline-marker" aria-hidden="true"></div>
           </article>
 
-          <!-- Timeline Item 3: College Years -->
+          <!-- Timeline Item 3: Engagement -->
           <article class="timeline-item left" role="listitem">
             <div class="timeline-content">
               <div class="timeline-image">
-                <img src="assets/images/timeline/college.jpg" alt="Tejal and Omkar in college" loading="lazy">
+                <img src="IMG_2344.PNG" alt="Tejal and Omkar caricature" loading="lazy">
                 <div class="image-overlay" aria-hidden="true"></div>
               </div>
               <div class="timeline-text">
-                <span class="timeline-year">2013-2017</span>
-                <h3>College Years</h3>
-                <p>College brought new adventures and deeper conversations. Late-night study sessions turned into heart-to-heart talks. We discovered shared dreams, supported each other's ambitions, and realized that our friendship was evolving into something more profound.</p>
+                <span class="timeline-year">Engagement</span>
+                <h3>Two Families, One Celebration</h3>
+                <p>With blessings from our loved ones, we exchanged rings and began the countdown to the big day.</p>
               </div>
             </div>
             <div class="timeline-marker" aria-hidden="true"></div>
           </article>
 
-          <!-- Timeline Item 4: Young Adults -->
+          <!-- Timeline Item 4: The Big Day -->
           <article class="timeline-item right" role="listitem">
             <div class="timeline-content">
               <div class="timeline-image">
-                <img src="assets/images/timeline/young-adults.jpg" alt="Tejal and Omkar as young adults" loading="lazy">
-                <div class="image-overlay" aria-hidden="true"></div>
-              </div>
-              <div class="timeline-text">
-                <span class="timeline-year">2017-2022</span>
-                <h3>Realizing Our Love</h3>
-                <p>As we stepped into the professional world, distance couldn't diminish what we felt. Weekend meetups, endless phone calls, and constant support made us realize - this wasn't just friendship anymore. We had fallen deeply in love with our best friend.</p>
-              </div>
-            </div>
-            <div class="timeline-marker" aria-hidden="true"></div>
-          </article>
-
-          <!-- Timeline Item 5: The Proposal -->
-          <article class="timeline-item left" role="listitem">
-            <div class="timeline-content">
-              <div class="timeline-image">
-                <img src="assets/images/timeline/proposal.jpg" alt="The proposal moment" loading="lazy">
-                <div class="image-overlay" aria-hidden="true"></div>
-              </div>
-              <div class="timeline-text">
-                <span class="timeline-year">2025</span>
-                <h3>The Proposal</h3>
-                <p>On a beautiful evening at our favorite spot from childhood, Omkar got down on one knee. With tears of joy and hearts full of love, we decided to make our forever official. The playground where it all began witnessed the beginning of our new journey.</p>
-              </div>
-            </div>
-            <div class="timeline-marker" aria-hidden="true"></div>
-          </article>
-
-          <!-- Timeline Item 6: The Wedding -->
-          <article class="timeline-item right" role="listitem">
-            <div class="timeline-content">
-              <div class="timeline-image">
-                <img src="assets/images/timeline/wedding.jpg" alt="Wedding day celebration" loading="lazy">
+                <img src="IMG_2344.PNG" alt="Tejal and Omkar caricature" loading="lazy">
                 <div class="image-overlay" aria-hidden="true"></div>
               </div>
               <div class="timeline-text">
                 <span class="timeline-year">June 19, 2026</span>
                 <h3>Our Big Day</h3>
-                <p>And now, surrounded by family and friends who have watched our love story unfold, we're ready to say "I do". Join us as we celebrate not just a wedding, but a lifetime of friendship, love, and togetherness.</p>
+                <p>Now we’re ready to say “I do”—and we’d love for you to be part of our celebration.</p>
               </div>
             </div>
             <div class="timeline-marker" aria-hidden="true"></div>
@@ -747,35 +795,9 @@
         
         <div class="events-grid">
           
-          <!-- Mehendi Ceremony -->
-          <article class="event-card">
-            <div class="event-icon" aria-hidden="true">🎨</div>
-            <time class="event-date" datetime="2026-06-17">17th June 2026</time>
-            <h3 class="event-name">Mehendi Ceremony</h3>
-            <p class="event-time">3:00 PM - 7:00 PM</p>
-            <p class="event-description">
-              A vibrant and joyous ceremony where intricate henna designs adorn the bride's hands and feet. 
-              This traditional ritual is accompanied by folk songs, dance, and celebration. The rich aroma of 
-              mehendi and the sound of laughter fill the air as women gather to bless the bride.
-            </p>
-          </article>
-
-          <!-- Haldi Ceremony -->
-          <article class="event-card">
-            <div class="event-icon" aria-hidden="true">✨</div>
-            <time class="event-date" datetime="2026-06-18">18th June 2026</time>
-            <h3 class="event-name">Haldi Ceremony</h3>
-            <p class="event-time">10:00 AM - 12:00 PM</p>
-            <p class="event-description">
-              The sacred Haldi ceremony where turmeric paste is applied to the bride and groom in their 
-              respective homes. This auspicious ritual is believed to bless the couple with prosperity and 
-              ward off evil spirits. The yellow hue symbolizes purity and new beginnings.
-            </p>
-          </article>
-
           <!-- Sangeet Night -->
           <article class="event-card">
-            <div class="event-icon" aria-hidden="true">🎵</div>
+            <div class="event-icon" aria-hidden="true">�</div>
             <time class="event-date" datetime="2026-06-18">18th June 2026</time>
             <h3 class="event-name">Sangeet Night</h3>
             <p class="event-time">7:00 PM - 11:00 PM</p>
@@ -786,29 +808,29 @@
             </p>
           </article>
 
+          <!-- Haldi Ceremony -->
+          <article class="event-card">
+            <div class="event-icon" aria-hidden="true">✨</div>
+            <time class="event-date" datetime="2026-06-18">18th June 2026</time>
+            <h3 class="event-name">Haldi Ceremony</h3>
+            <p class="event-time">6:00 AM - 8:00 AM</p>
+            <p class="event-description">
+              The sacred Haldi ceremony where turmeric paste is applied to the bride and groom in their 
+              respective homes. This auspicious ritual is believed to bless the couple with prosperity and 
+              ward off evil spirits. The yellow hue symbolizes purity and new beginnings.
+            </p>
+          </article>
+
           <!-- Wedding Ceremony -->
           <article class="event-card highlight">
             <div class="event-icon" aria-hidden="true">💍</div>
             <time class="event-date" datetime="2026-06-19">19th June 2026</time>
             <h3 class="event-name">Wedding Ceremony (Lagna)</h3>
-            <p class="event-time">6:00 PM - 10:00 PM</p>
+            <p class="event-time">12:00 PM - Until your arrival</p>
             <p class="event-description">
               The main event! The sacred Maharashtrian wedding ceremony where Tejal and Omkar will exchange 
               vows and garlands under the traditional mandap. Witness the beautiful rituals including the 
               Antarpat, Kanyadaan, and Saptapadi as they begin their journey as husband and wife.
-            </p>
-          </article>
-
-          <!-- Reception -->
-          <article class="event-card">
-            <div class="event-icon" aria-hidden="true">🎉</div>
-            <time class="event-date" datetime="2026-06-19">19th June 2026</time>
-            <h3 class="event-name">Reception</h3>
-            <p class="event-time">10:00 PM - 1:00 AM</p>
-            <p class="event-description">
-              Join us for an elegant reception dinner as we celebrate the newlyweds! Enjoy delicious 
-              Maharashtrian cuisine, music, and dancing. It's time to shower the couple with blessings 
-              and create beautiful memories together.
             </p>
           </article>
           
@@ -825,18 +847,16 @@
         
         <div class="venue-content">
           <div class="venue-details">
-            <h3>The Grand Maharaja Palace</h3>
+            <h3>Kuber Empire</h3>
             <address class="venue-address">
               <strong>Address:</strong><br>
-              Survey No. 123, Mumbai-Pune Highway,<br>
-              Lonavala, Maharashtra 410401<br>
-              India
+              Kuber Empire, Sangamner Bypass Rd, near New,<br>
+              Khandgaon, Sangamner, Maharashtra 422605
             </address>
             
             <div class="venue-contact">
-              <p><strong>Contact Person:</strong> Mr. Umesh Deshpande</p>
-              <p><strong>Phone:</strong> <a href="tel:+919876543210">+91 98765 43210</a></p>
-              <p><strong>Email:</strong> <a href="mailto:events@grandmaharaja.com">events@grandmaharaja.com</a></p>
+              <p><strong>Contact Person:</strong> Mr. Omkar Deshpande</p>
+              <p><strong>Phone:</strong> <a href="tel:+917709833124">+91 7709833124</a></p>
             </div>
             
             <div class="venue-info">
@@ -849,22 +869,20 @@
             </div>
             
             <div class="venue-buttons">
-              <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              <a href="https://maps.app.goo.gl/SjMHGfjaxNhff5Kx5" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
                 Get Directions
-              </a>
-              <a href="tel:+919876543210" class="btn btn-secondary">
-                Call Venue
               </a>
             </div>
           </div>
           
           <div class="venue-map">
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.123456789!2d73.4!3d18.75!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDQ1JzAwLjAiTiA3M8KwMjQnMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3759.656954457869!2d74.20400907500274!3d19.556335981749722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdd01ef2b4602ef%3A0x1744b1b464e67fea!2sKuber%20Empire!5e0!3m2!1sen!2sin!4v1774175702743!5m2!1sen!2sin" 
               width="100%" 
               height="450" 
               allowfullscreen="" 
               loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
               title="Wedding venue location map">
             </iframe>
           </div>

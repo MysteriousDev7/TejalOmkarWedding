@@ -22,10 +22,8 @@
 
 /* Advanced Transitions & Fancy Effects */
 @import url('advanced-transitions.css');
-@import url('extra-animations.css');
 
 /* Mobile Responsive Styles */
-@import url('mobile-responsive.css');
 @import url('touch-optimizations.css');
 @import url('mobile-animations.css');
 
