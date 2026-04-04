@@ -344,6 +344,184 @@
       display: block;
       pointer-events: none;
     }
+
+    .post-curtain-ui {
+      position: fixed;
+      inset: auto 0 24px;
+      z-index: 120;
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(18px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+
+    body.curtain-lifted .post-curtain-ui {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .post-curtain-scroll-indicator {
+      width: fit-content;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: rgba(20, 9, 37, 0.55);
+      color: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.22);
+    }
+
+    .post-curtain-scroll-text {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .post-curtain-scroll-arrow {
+      width: 26px;
+      height: 42px;
+      border: 2px solid rgba(255, 255, 255, 0.75);
+      border-radius: 999px;
+      position: relative;
+    }
+
+    .post-curtain-scroll-arrow::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 8px;
+      width: 6px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.88);
+      transform: translateX(-50%);
+      animation: scrollNudge 1.8s ease-in-out infinite;
+    }
+
+    .floating-controls-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2147483000;
+    }
+
+    .floating-audio-toggle {
+      position: absolute;
+      right: 18px;
+      bottom: 22px;
+      left: auto;
+      top: auto;
+      z-index: 130;
+      width: 56px;
+      height: 56px;
+      border: none;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #6d2ea8 0%, #4B0082 100%);
+      color: #ffffff;
+      box-shadow: 0 16px 34px rgba(75, 0, 130, 0.35);
+      cursor: pointer;
+      pointer-events: auto;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(16px) scale(0.96);
+      transition: opacity 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    body.curtain-lifted .floating-audio-toggle {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    .floating-audio-toggle:hover {
+      box-shadow: 0 20px 40px rgba(75, 0, 130, 0.42);
+    }
+
+    .floating-audio-toggle:active {
+      transform: translateY(0) scale(0.97);
+    }
+
+    .floating-audio-toggle[aria-pressed='true'] .audio-icon-play,
+    .floating-audio-toggle[aria-pressed='false'] .audio-icon-pause {
+      display: none;
+    }
+
+    .floating-audio-toggle[aria-pressed='true'] .audio-icon-pause,
+    .floating-audio-toggle[aria-pressed='false'] .audio-icon-play {
+      display: block;
+    }
+
+    .floating-audio-toggle.audio-unavailable {
+      opacity: 0.7;
+      filter: grayscale(0.15);
+    }
+
+    .floating-audio-toggle svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    @keyframes scrollNudge {
+      0%, 100% {
+        opacity: 0.2;
+        transform: translateX(-50%) translateY(0);
+      }
+      40% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(11px);
+      }
+      70% {
+        opacity: 0.45;
+        transform: translateX(-50%) translateY(18px);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .post-curtain-ui {
+        inset: auto 0 calc(env(safe-area-inset-bottom, 0px) + 128px);
+        bottom: 128px;
+        z-index: 250;
+      }
+
+      .post-curtain-scroll-indicator {
+        padding: 10px 16px;
+        max-width: calc(100vw - 88px);
+      }
+
+      .post-curtain-scroll-text {
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+      }
+
+      .floating-audio-toggle {
+        position: absolute !important;
+        right: 14px !important;
+        left: auto !important;
+        top: auto !important;
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 128px) !important;
+        width: 52px !important;
+        height: 52px !important;
+        margin: 0 !important;
+        z-index: 2147483000 !important;
+        transform: translate3d(0, 0, 0) !important;
+      }
+
+      body.curtain-lifted .floating-audio-toggle {
+        transform: translate3d(0, 0, 0) scale(1) !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -356,10 +534,106 @@
       <div class="open-instruction" aria-hidden="true">Tap to reveal our celebration</div>
     </div>
   </div>
+
+  <div class="post-curtain-ui" aria-hidden="true">
+    <div class="post-curtain-scroll-indicator" id="scrollIndicator">
+      <span class="post-curtain-scroll-text">Scroll to explore</span>
+      <span class="post-curtain-scroll-arrow"></span>
+    </div>
+  </div>
+
+  <div class="floating-controls-layer" aria-hidden="true">
+    <button class="floating-audio-toggle" id="audioToggle" type="button" aria-label="Pause background music" aria-pressed="true">
+      <svg class="audio-icon-pause" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M7 5h4v14H7zm6 0h4v14h-4z"></path>
+      </svg>
+      <svg class="audio-icon-play" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M8 5v14l11-7z"></path>
+      </svg>
+    </button>
+  </div>
+
+  <audio id="backgroundMusic" preload="auto" loop>
+    <source src="assets/audio/wedding-theme.mp3" type="audio/mpeg">
+  </audio>
   
   <script>
     // Open invitation
     let isOpening = false;
+    let musicStarted = false;
+
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const audioToggle = document.getElementById('audioToggle');
+    const scrollIndicator = document.getElementById('scrollIndicator');
+    const postCurtainUi = document.querySelector('.post-curtain-ui');
+    const floatingControlsLayer = document.querySelector('.floating-controls-layer');
+
+    function setPostCurtainControlsVisible(isVisible) {
+      if (postCurtainUi) {
+        postCurtainUi.style.opacity = isVisible ? '1' : '0';
+        postCurtainUi.style.visibility = isVisible ? 'visible' : 'hidden';
+        postCurtainUi.style.transform = isVisible ? 'translateY(0)' : 'translateY(18px)';
+      }
+
+      if (floatingControlsLayer) {
+        floatingControlsLayer.style.opacity = isVisible ? '1' : '0';
+        floatingControlsLayer.style.visibility = isVisible ? 'visible' : 'hidden';
+      }
+
+      if (audioToggle) {
+        audioToggle.style.opacity = isVisible ? '1' : '0';
+        audioToggle.style.visibility = isVisible ? 'visible' : 'hidden';
+        audioToggle.style.transform = isVisible ? 'translateY(0) scale(1)' : 'translateY(16px) scale(0.96)';
+      }
+    }
+
+    function updateAudioButton(isPlaying, isAvailable) {
+      if (!audioToggle) return;
+      audioToggle.setAttribute('aria-pressed', String(isPlaying));
+      audioToggle.setAttribute('aria-label', isPlaying ? 'Pause background music' : 'Play background music');
+      audioToggle.classList.toggle('audio-unavailable', !isAvailable);
+      audioToggle.disabled = !isAvailable;
+    }
+
+    async function startBackgroundMusic() {
+      if (!backgroundMusic) return false;
+      const hasSource = Array.from(backgroundMusic.querySelectorAll('source')).some((source) => source.getAttribute('src'));
+      if (!hasSource) {
+        updateAudioButton(false, false);
+        return false;
+      }
+
+      try {
+        backgroundMusic.volume = 0.45;
+        await backgroundMusic.play();
+        musicStarted = true;
+        updateAudioButton(true, true);
+        return true;
+      } catch (error) {
+        updateAudioButton(false, true);
+        return false;
+      }
+    }
+
+    function revealPostCurtainUi() {
+      setPostCurtainControlsVisible(true);
+      if (scrollIndicator) {
+        scrollIndicator.style.opacity = '1';
+        scrollIndicator.style.visibility = 'visible';
+        scrollIndicator.style.pointerEvents = 'none';
+
+        const hideScrollIndicator = () => {
+          scrollIndicator.style.opacity = '0';
+          scrollIndicator.style.visibility = 'hidden';
+          scrollIndicator.style.pointerEvents = 'none';
+          window.removeEventListener('scroll', hideScrollIndicator);
+        };
+
+        window.addEventListener('scroll', hideScrollIndicator, { passive: true, once: true });
+      }
+      void startBackgroundMusic();
+    }
+
     function openInvite() {
       // Prevent multiple clicks
       if (isOpening) return;
@@ -389,6 +663,7 @@
         finished = true;
         document.body.classList.add('curtain-lifted');
         document.body.classList.remove('curtain-active');
+        revealPostCurtainUi();
         triggerCelebration();
       }
 
@@ -442,23 +717,57 @@
 
     function resetLandingState() {
       isOpening = false;
+      musicStarted = false;
       document.body.classList.remove('curtain-opening');
       document.body.classList.remove('curtain-open');
       document.body.classList.remove('curtain-lifted');
       document.body.classList.add('curtain-active');
+      if (backgroundMusic) {
+        backgroundMusic.pause();
+        backgroundMusic.currentTime = 0;
+      }
+      setPostCurtainControlsVisible(false);
+      updateAudioButton(true, true);
+      if (scrollIndicator) {
+        scrollIndicator.style.opacity = '0';
+        scrollIndicator.style.visibility = 'hidden';
+        scrollIndicator.style.pointerEvents = 'none';
+      }
     }
 
     // Initialize curtain active state
     document.body.classList.add('curtain-active');
+    setPostCurtainControlsVisible(false);
+    updateAudioButton(true, true);
+
+    if (audioToggle) {
+      audioToggle.addEventListener('click', async () => {
+        if (!backgroundMusic) return;
+
+        if (backgroundMusic.paused) {
+          const started = await startBackgroundMusic();
+          if (!started && musicStarted) {
+            updateAudioButton(false, true);
+          }
+          return;
+        }
+
+        backgroundMusic.pause();
+        updateAudioButton(false, true);
+      });
+    }
+
+    if (backgroundMusic) {
+      backgroundMusic.addEventListener('play', () => updateAudioButton(true, true));
+      backgroundMusic.addEventListener('pause', () => updateAudioButton(false, true));
+      backgroundMusic.addEventListener('error', () => updateAudioButton(false, false));
+    }
 
     // Ensure state resets when returning via back button (bfcache)
     window.addEventListener('pageshow', function(event) {
       if (event.persisted) {
         resetLandingState();
       }
-    });
-    document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) resetLandingState();
     });
     
     // Tap/click to lift the curtain
