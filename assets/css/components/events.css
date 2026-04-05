@@ -101,6 +101,7 @@
 }
 
 .event-date {
+  display: block;
   text-align: center;
   font-weight: var(--font-weight-semibold);
   color: var(--color-primary-maroon);
