@@ -409,16 +409,17 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 2147483000;
+      z-index: 2147483600;
+      display: block;
     }
 
     .floating-audio-toggle {
-      position: absolute;
-      right: 20px;
-      bottom: 30px;
-      left: auto;
-      top: auto;
-      z-index: 100;
+      position: fixed !important;
+      right: max(18px, env(safe-area-inset-right, 0px) + 12px) !important;
+      bottom: max(22px, env(safe-area-inset-bottom, 0px) + 14px) !important;
+      left: auto !important;
+      top: auto !important;
+      z-index: 2147483601 !important;
       width: 56px;
       height: 56px;
       border: none;
@@ -430,7 +431,7 @@
       color: #ffffff;
       box-shadow: 0 16px 34px rgba(75, 0, 130, 0.35);
       cursor: pointer;
-      pointer-events: auto !important;
+      pointer-events: auto;
       opacity: 0;
       visibility: hidden;
       transform: translateY(16px) scale(0.96);
@@ -438,10 +439,9 @@
     }
 
     body.curtain-lifted .floating-audio-toggle {
-      opacity: 1 !important;
-      visibility: visible !important;
+      opacity: 1;
+      visibility: visible;
       transform: translateY(0) scale(1);
-      pointer-events: auto !important;
     }
 
     .floating-audio-toggle:hover {
@@ -488,110 +488,38 @@
       }
     }
 
-    /* Mobile-specific scroll indicator */
-    .mobile-scroll-hint {
-      display: none;
-    }
-
-    .mobile-scroll-hint-hero {
-      display: none;
-    }
-
     @media (max-width: 768px) {
       .post-curtain-ui {
-        display: none;
-      }
-
-      .mobile-scroll-hint-hero {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        position: absolute;
-        bottom: 80px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 90;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.45s ease 0.3s, visibility 0.45s ease 0.3s;
-        pointer-events: none;
-      }
-
-      body.curtain-lifted .mobile-scroll-hint-hero {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .mobile-scroll-text {
-        font-size: 0.75rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.9);
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-        font-weight: 500;
-      }
-
-      .mobile-scroll-icon {
-        width: 32px;
-        height: 32px;
-        border: 2px solid rgba(255, 255, 255, 0.8);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(75, 0, 130, 0.3);
-        backdrop-filter: blur(8px);
-        animation: bounceDown 2s ease-in-out infinite;
-      }
-
-      .mobile-scroll-icon::before {
-        content: '↓';
-        font-size: 20px;
-        color: rgba(255, 255, 255, 0.9);
-        line-height: 1;
-      }
-
-      @keyframes bounceDown {
-        0%, 100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(8px);
-        }
+        inset: auto 0 calc(env(safe-area-inset-bottom, 0px) + 128px);
+        bottom: 128px;
+        z-index: 250;
       }
 
       .post-curtain-scroll-indicator {
-        padding: 12px 20px;
+        padding: 10px 16px;
         max-width: calc(100vw - 88px);
-        gap: 12px;
       }
 
       .post-curtain-scroll-text {
-        font-size: 0.85rem;
+        font-size: 0.72rem;
         letter-spacing: 0.12em;
       }
 
-      .post-curtain-scroll-arrow {
-        width: 28px;
-        height: 44px;
-      }
-
       .floating-audio-toggle {
-        position: absolute !important;
-        right: 16px !important;
-        bottom: 20px !important;
+        position: fixed !important;
+        right: max(14px, env(safe-area-inset-right, 0px) + 10px) !important;
         left: auto !important;
         top: auto !important;
+        bottom: max(20px, env(safe-area-inset-bottom, 0px) + 14px) !important;
         width: 52px !important;
         height: 52px !important;
         margin: 0 !important;
-        z-index: 100 !important;
-        pointer-events: auto !important;
+        z-index: 2147483601 !important;
       }
 
       body.curtain-lifted .floating-audio-toggle {
-        pointer-events: auto !important;
+        opacity: 1 !important;
+        visibility: visible !important;
       }
     }
   </style>
@@ -614,12 +542,16 @@
     </div>
   </div>
 
-  <!-- Mobile-specific scroll indicator -->
-  <div class="mobile-scroll-hint" aria-hidden="true">
-    <span class="mobile-scroll-text">Scroll Down</span>
-    <div class="mobile-scroll-icon"></div>
+  <div class="floating-controls-layer" aria-hidden="true" style="position:fixed; inset:0; pointer-events:none; z-index:2147483600; display:block;">
+    <button class="floating-audio-toggle" id="audioToggle" type="button" aria-label="Pause background music" aria-pressed="true">
+      <svg class="audio-icon-pause" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M7 5h4v14H7zm6 0h4v14h-4z"></path>
+      </svg>
+      <svg class="audio-icon-play" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M8 5v14l11-7z"></path>
+      </svg>
+    </button>
   </div>
-
 
   <audio id="backgroundMusic" preload="auto" loop>
     <source src="assets/audio/wedding-theme.mp3" type="audio/mpeg">
@@ -630,22 +562,13 @@
     let isOpening = false;
     let musicStarted = false;
 
-    let backgroundMusic;
-    let audioToggle;
-    let scrollIndicator;
-    let postCurtainUi;
-    let floatingControlsLayer;
-
-    // Wait for DOM to be fully loaded before accessing elements
-    document.addEventListener('DOMContentLoaded', function() {
-      backgroundMusic = document.getElementById('backgroundMusic');
-      audioToggle = document.getElementById('audioToggle');
-      scrollIndicator = document.getElementById('scrollIndicator');
-      postCurtainUi = document.querySelector('.post-curtain-ui');
-      floatingControlsLayer = document.querySelector('.floating-controls-layer');
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const audioToggle = document.getElementById('audioToggle');
+    const scrollIndicator = document.getElementById('scrollIndicator');
+    const postCurtainUi = document.querySelector('.post-curtain-ui');
+    const floatingControlsLayer = document.querySelector('.floating-controls-layer');
 
     function setPostCurtainControlsVisible(isVisible) {
-      
       if (postCurtainUi) {
         postCurtainUi.style.opacity = isVisible ? '1' : '0';
         postCurtainUi.style.visibility = isVisible ? 'visible' : 'hidden';
@@ -672,6 +595,7 @@
     }
 
     async function startBackgroundMusic() {
+      if (!backgroundMusic) return false;
       const hasSource = Array.from(backgroundMusic.querySelectorAll('source')).some((source) => source.getAttribute('src'));
       if (!hasSource) {
         updateAudioButton(false, false);
@@ -706,19 +630,6 @@
 
         window.addEventListener('scroll', hideScrollIndicator, { passive: true, once: true });
       }
-
-      // Show and hide mobile scroll hint
-      const mobileScrollHint = document.getElementById('mobileScrollHint');
-      if (mobileScrollHint) {
-        const hideMobileHint = () => {
-          mobileScrollHint.style.opacity = '0';
-          mobileScrollHint.style.visibility = 'hidden';
-          window.removeEventListener('scroll', hideMobileHint);
-        };
-
-        window.addEventListener('scroll', hideMobileHint, { passive: true, once: true });
-      }
-
       void startBackgroundMusic();
     }
 
@@ -823,45 +734,44 @@
       }
     }
 
-      // Initialize curtain active state
-      document.body.classList.add('curtain-active');
-      setPostCurtainControlsVisible(false);
-      updateAudioButton(true, true);
+    // Initialize curtain active state
+    document.body.classList.add('curtain-active');
+    setPostCurtainControlsVisible(false);
+    updateAudioButton(true, true);
 
-      if (audioToggle) {
-        audioToggle.addEventListener('click', async (e) => {
-          if (!backgroundMusic) return;
+    if (audioToggle) {
+      audioToggle.addEventListener('click', async () => {
+        if (!backgroundMusic) return;
 
-          if (backgroundMusic.paused) {
-            const started = await startBackgroundMusic();
-            if (!started && musicStarted) {
-              updateAudioButton(false, true);
-            }
-            return;
+        if (backgroundMusic.paused) {
+          const started = await startBackgroundMusic();
+          if (!started && musicStarted) {
+            updateAudioButton(false, true);
           }
-
-          backgroundMusic.pause();
-          updateAudioButton(false, true);
-        });
-      }
-
-      if (backgroundMusic) {
-        backgroundMusic.addEventListener('play', () => updateAudioButton(true, true));
-        backgroundMusic.addEventListener('pause', () => updateAudioButton(false, true));
-        backgroundMusic.addEventListener('error', () => updateAudioButton(false, false));
-      }
-
-      // Ensure state resets when returning via back button (bfcache)
-      window.addEventListener('pageshow', function(event) {
-        if (event.persisted) {
-          resetLandingState();
+          return;
         }
+
+        backgroundMusic.pause();
+        updateAudioButton(false, true);
       });
-      
-      // Tap/click to lift the curtain
-      const handle = document.getElementById('openCurtain');
-      handle.addEventListener('click', openInvite);
-    }); // End of DOMContentLoaded
+    }
+
+    if (backgroundMusic) {
+      backgroundMusic.addEventListener('play', () => updateAudioButton(true, true));
+      backgroundMusic.addEventListener('pause', () => updateAudioButton(false, true));
+      backgroundMusic.addEventListener('error', () => updateAudioButton(false, false));
+    }
+
+    // Ensure state resets when returning via back button (bfcache)
+    window.addEventListener('pageshow', function(event) {
+      if (event.persisted) {
+        resetLandingState();
+      }
+    });
+    
+    // Tap/click to lift the curtain
+    const handle = document.getElementById('openCurtain');
+    handle.addEventListener('click', openInvite);
 
     // Celebration animation
     let celebrationRunning = false;
@@ -1089,22 +999,6 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- Audio Button positioned at bottom of hero section -->
-      <button class="floating-audio-toggle" id="audioToggle" type="button" aria-label="Pause background music" aria-pressed="true">
-        <svg class="audio-icon-pause" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M7 5h4v14H7zm6 0h4v14h-4z"></path>
-        </svg>
-        <svg class="audio-icon-play" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M8 5v14l11-7z"></path>
-        </svg>
-      </button>
-
-      <!-- Mobile scroll indicator inside hero section -->
-      <div class="mobile-scroll-hint-hero" id="mobileScrollHint">
-        <span class="mobile-scroll-text">Scroll Down</span>
-        <div class="mobile-scroll-icon"></div>
       </div>
     </section>
 
