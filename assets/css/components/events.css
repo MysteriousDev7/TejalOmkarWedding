@@ -143,6 +143,342 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
+/* Sangeet Card Disco Dancing Animation */
+.event-card.sangeet-card {
+  position: relative;
+  background: linear-gradient(135deg, #1a0033 0%, #2d0052 50%, #1a0033 100%);
+  overflow: hidden;
+}
+
+/* Rotating disco lights layer 1 */
+.event-card.sangeet-card::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  right: -100%;
+  bottom: -100%;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(255, 0, 255, 0.4) 0%, transparent 15%),
+    radial-gradient(circle at 70% 30%, rgba(0, 255, 255, 0.35) 0%, transparent 18%),
+    radial-gradient(circle at 20% 70%, rgba(255, 255, 0, 0.38) 0%, transparent 16%),
+    radial-gradient(circle at 80% 65%, rgba(255, 0, 128, 0.36) 0%, transparent 17%),
+    radial-gradient(circle at 50% 20%, rgba(0, 255, 128, 0.32) 0%, transparent 14%),
+    radial-gradient(circle at 40% 85%, rgba(128, 0, 255, 0.34) 0%, transparent 15%);
+  animation: discoRotate1 8s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Rotating disco lights layer 2 */
+.event-card.sangeet-card::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  right: -100%;
+  bottom: -100%;
+  background: 
+    radial-gradient(circle at 60% 50%, rgba(255, 100, 0, 0.42) 0%, transparent 16%),
+    radial-gradient(circle at 15% 35%, rgba(0, 200, 255, 0.38) 0%, transparent 17%),
+    radial-gradient(circle at 85% 45%, rgba(255, 200, 0, 0.36) 0%, transparent 15%),
+    radial-gradient(circle at 35% 60%, rgba(200, 0, 255, 0.4) 0%, transparent 18%),
+    radial-gradient(circle at 75% 75%, rgba(0, 255, 200, 0.34) 0%, transparent 14%);
+  animation: discoRotate2 6s linear infinite reverse;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Pulsing spotlight effect */
+.event-card.sangeet-card .event-icon::before {
+  content: '';
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  right: -150%;
+  bottom: -150%;
+  background: 
+    radial-gradient(ellipse 200px 300px at 50% 0%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(255, 200, 255, 0.2) 0%, transparent 30%);
+  animation: discoSpotlight 3s ease-in-out infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.event-card.sangeet-card > * {
+  position: relative;
+  z-index: 1;
+  color: #ffffff;
+}
+
+.event-card.sangeet-card .event-name,
+.event-card.sangeet-card .event-date,
+.event-card.sangeet-card .event-time {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 0, 255, 0.3);
+}
+
+.event-card.sangeet-card .event-description {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Disco ball rotation animation */
+@keyframes discoRotate1 {
+  0% {
+    transform: rotate(0deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1.1);
+  }
+}
+
+@keyframes discoRotate2 {
+  0% {
+    transform: rotate(0deg) scale(1.15);
+  }
+  100% {
+    transform: rotate(360deg) scale(1.15);
+  }
+}
+
+/* Pulsing spotlight */
+@keyframes discoSpotlight {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.2);
+  }
+}
+
+/* Haldi Card Splashing Colors Animation */
+.event-card.haldi-card {
+  position: relative;
+  background: linear-gradient(135deg, #fff9e6 0%, #fffef0 100%);
+  overflow: hidden;
+}
+
+/* Main splash with splatters - thrown from top left */
+.event-card.haldi-card::before {
+  content: '';
+  position: absolute;
+  top: -120%;
+  left: -120%;
+  right: -120%;
+  bottom: -120%;
+  background: 
+    /* Main impact splash */
+    radial-gradient(ellipse 140px 95px at 18% 22%, rgba(255, 215, 0, 0.7) 0%, rgba(255, 215, 0, 0.45) 18%, rgba(255, 215, 0, 0.2) 35%, transparent 55%),
+    /* Large splatter */
+    radial-gradient(ellipse 95px 65px at 28% 38%, rgba(255, 165, 0, 0.65) 0%, rgba(255, 165, 0, 0.35) 22%, transparent 60%),
+    /* Medium splatters */
+    radial-gradient(circle 45px at 12% 48%, rgba(255, 193, 7, 0.6) 0%, rgba(255, 193, 7, 0.25) 30%, transparent 65%),
+    radial-gradient(ellipse 55px 40px at 32% 28%, rgba(255, 140, 0, 0.68) 0%, rgba(255, 140, 0, 0.3) 25%, transparent 58%),
+    /* Small droplets */
+    radial-gradient(circle 25px at 8% 35%, rgba(255, 215, 0, 0.75) 0%, rgba(255, 215, 0, 0.35) 35%, transparent 70%),
+    radial-gradient(circle 20px at 35% 18%, rgba(255, 180, 0, 0.7) 0%, rgba(255, 180, 0, 0.3) 40%, transparent 75%),
+    radial-gradient(circle 18px at 22% 52%, rgba(255, 200, 50, 0.65) 0%, transparent 80%),
+    radial-gradient(circle 15px at 5% 28%, rgba(255, 160, 0, 0.6) 0%, transparent 85%);
+  animation: splashFromTopLeft 4.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(0.5px);
+}
+
+/* Secondary splash with droplets - thrown from right */
+.event-card.haldi-card::after {
+  content: '';
+  position: absolute;
+  top: -120%;
+  left: -120%;
+  right: -120%;
+  bottom: -120%;
+  background: 
+    /* Main impact */
+    radial-gradient(ellipse 130px 88px at 82% 42%, rgba(255, 235, 59, 0.72) 0%, rgba(255, 235, 59, 0.42) 20%, rgba(255, 235, 59, 0.18) 38%, transparent 58%),
+    /* Large splatter */
+    radial-gradient(ellipse 88px 68px at 72% 58%, rgba(255, 179, 0, 0.66) 0%, rgba(255, 179, 0, 0.32) 24%, transparent 62%),
+    /* Medium splatters */
+    radial-gradient(ellipse 60px 48px at 88% 32%, rgba(255, 160, 0, 0.7) 0%, rgba(255, 160, 0, 0.35) 26%, transparent 60%),
+    radial-gradient(circle 42px at 78% 68%, rgba(255, 200, 50, 0.62) 0%, rgba(255, 200, 50, 0.28) 32%, transparent 68%),
+    /* Droplets and splatters */
+    radial-gradient(circle 28px at 92% 48%, rgba(255, 215, 0, 0.78) 0%, rgba(255, 215, 0, 0.38) 38%, transparent 72%),
+    radial-gradient(circle 22px at 68% 38%, rgba(255, 193, 7, 0.72) 0%, rgba(255, 193, 7, 0.32) 42%, transparent 78%),
+    radial-gradient(circle 16px at 85% 62%, rgba(255, 140, 0, 0.68) 0%, transparent 82%),
+    radial-gradient(circle 20px at 75% 28%, rgba(255, 180, 0, 0.65) 0%, transparent 80%);
+  animation: splashFromRight 5.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  animation-delay: 1.8s;
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(0.5px);
+}
+
+/* Third splash layer - thrown from bottom with spray effect */
+.event-card.haldi-card .event-icon::before {
+  content: '';
+  position: absolute;
+  top: -250%;
+  left: -250%;
+  right: -250%;
+  bottom: -250%;
+  background: 
+    /* Main upward splash */
+    radial-gradient(ellipse 125px 85px at 48% 78%, rgba(255, 215, 0, 0.68) 0%, rgba(255, 215, 0, 0.4) 22%, rgba(255, 215, 0, 0.15) 40%, transparent 60%),
+    /* Spray splatters */
+    radial-gradient(ellipse 75px 58px at 38% 88%, rgba(255, 193, 7, 0.64) 0%, rgba(255, 193, 7, 0.3) 28%, transparent 65%),
+    radial-gradient(ellipse 68px 52px at 58% 85%, rgba(255, 140, 0, 0.6) 0%, rgba(255, 140, 0, 0.26) 30%, transparent 62%),
+    /* Upward droplets */
+    radial-gradient(circle 32px at 42% 68%, rgba(255, 180, 0, 0.7) 0%, rgba(255, 180, 0, 0.32) 35%, transparent 70%),
+    radial-gradient(circle 24px at 55% 72%, rgba(255, 200, 50, 0.66) 0%, rgba(255, 200, 50, 0.28) 40%, transparent 75%),
+    radial-gradient(circle 18px at 35% 82%, rgba(255, 160, 0, 0.62) 0%, transparent 80%),
+    radial-gradient(circle 20px at 62% 90%, rgba(255, 215, 0, 0.68) 0%, transparent 78%),
+    radial-gradient(circle 15px at 48% 92%, rgba(255, 193, 7, 0.6) 0%, transparent 85%);
+  animation: splashFromBottom 4.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  animation-delay: 3.2s;
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(0.5px);
+}
+
+.event-card.haldi-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Realistic splash from top-left with impact and settle */
+@keyframes splashFromTopLeft {
+  0% {
+    transform: translate(-85%, -85%) scale(0.25) rotate(-28deg);
+    opacity: 0;
+    filter: blur(2px);
+  }
+  12% {
+    transform: translate(-45%, -45%) scale(0.65) rotate(-14deg);
+    opacity: 0.75;
+    filter: blur(1px);
+  }
+  25% {
+    transform: translate(-5%, -5%) scale(1.3) rotate(-2deg);
+    opacity: 1;
+    filter: blur(0.3px);
+  }
+  35% {
+    transform: translate(2%, 2%) scale(1.35) rotate(1deg);
+    opacity: 0.98;
+    filter: blur(0.2px);
+  }
+  50% {
+    transform: translate(6%, 6%) scale(1.18) rotate(2deg);
+    opacity: 0.92;
+    filter: blur(0.4px);
+  }
+  70% {
+    transform: translate(4%, 4%) scale(1.08) rotate(1deg);
+    opacity: 0.65;
+    filter: blur(0.6px);
+  }
+  85% {
+    transform: translate(2%, 2%) scale(1.02) rotate(0deg);
+    opacity: 0.35;
+    filter: blur(1px);
+  }
+  100% {
+    transform: translate(0%, 0%) scale(1) rotate(0deg);
+    opacity: 0;
+    filter: blur(1.5px);
+  }
+}
+
+/* Realistic splash from right with spray */
+@keyframes splashFromRight {
+  0% {
+    transform: translate(105%, -35%) scale(0.3) rotate(32deg);
+    opacity: 0;
+    filter: blur(2px);
+  }
+  14% {
+    transform: translate(55%, -15%) scale(0.7) rotate(18deg);
+    opacity: 0.8;
+    filter: blur(1px);
+  }
+  28% {
+    transform: translate(5%, 2%) scale(1.32) rotate(2deg);
+    opacity: 1;
+    filter: blur(0.3px);
+  }
+  38% {
+    transform: translate(-2%, 4%) scale(1.38) rotate(-1deg);
+    opacity: 0.96;
+    filter: blur(0.2px);
+  }
+  52% {
+    transform: translate(-5%, 6%) scale(1.22) rotate(-2deg);
+    opacity: 0.88;
+    filter: blur(0.4px);
+  }
+  72% {
+    transform: translate(-3%, 4%) scale(1.1) rotate(-1deg);
+    opacity: 0.6;
+    filter: blur(0.7px);
+  }
+  88% {
+    transform: translate(-1%, 2%) scale(1.03) rotate(0deg);
+    opacity: 0.3;
+    filter: blur(1.2px);
+  }
+  100% {
+    transform: translate(0%, 0%) scale(1) rotate(0deg);
+    opacity: 0;
+    filter: blur(1.8px);
+  }
+}
+
+/* Realistic upward splash from bottom */
+@keyframes splashFromBottom {
+  0% {
+    transform: translate(-25%, 95%) scale(0.28) rotate(22deg);
+    opacity: 0;
+    filter: blur(2px);
+  }
+  13% {
+    transform: translate(-10%, 48%) scale(0.68) rotate(12deg);
+    opacity: 0.78;
+    filter: blur(1px);
+  }
+  26% {
+    transform: translate(2%, 5%) scale(1.28) rotate(1deg);
+    opacity: 1;
+    filter: blur(0.3px);
+  }
+  36% {
+    transform: translate(4%, -2%) scale(1.32) rotate(-1deg);
+    opacity: 0.94;
+    filter: blur(0.2px);
+  }
+  50% {
+    transform: translate(5%, -6%) scale(1.2) rotate(-2deg);
+    opacity: 0.85;
+    filter: blur(0.5px);
+  }
+  70% {
+    transform: translate(3%, -4%) scale(1.1) rotate(-1deg);
+    opacity: 0.62;
+    filter: blur(0.8px);
+  }
+  86% {
+    transform: translate(1%, -2%) scale(1.04) rotate(0deg);
+    opacity: 0.32;
+    filter: blur(1.3px);
+  }
+  100% {
+    transform: translate(0%, 0%) scale(1) rotate(0deg);
+    opacity: 0;
+    filter: blur(2px);
+  }
+}
+
 /* ===================================
    RESPONSIVE
    =================================== */
